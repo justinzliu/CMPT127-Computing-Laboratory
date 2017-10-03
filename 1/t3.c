@@ -4,7 +4,6 @@
 int main(void)
 {
    float i = 0.0;
-   printf("Enter an floating point value: ");
    scanf("%f", &i);
    float rounddown = floor(i);
    float stdround = round(i);
