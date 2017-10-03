@@ -5,7 +5,6 @@ int main(void)
 {
    float i;
    int check;
-   printf("Enter an floating point value: ");
    check = scanf("%f", &i);
    if (check != 1)
    {
