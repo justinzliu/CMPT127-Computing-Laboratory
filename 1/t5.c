@@ -7,7 +7,6 @@ int main(void)
    int check;
    do
    {
-     printf("Enter an floating point value: ");
      check = scanf("%f", &i);
      if (check == 0)
      {
