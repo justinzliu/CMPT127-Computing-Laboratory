@@ -16,7 +16,7 @@ int main(void)
       if (check == EOF)
       {
          average=total/count;
-         printf("\n%0.2Lf %0.2Lf %0.2Lf\n", smallest, largest, average);
+         printf("%0.2Lf %0.2Lf %0.2Lf\n", smallest, largest, average);
       }
       else if (check == 0)
       {
