@@ -14,7 +14,7 @@ int main(void)
      }
      else if (check == EOF)
      {
-       printf("\nDone.\n");
+       printf("Done.\n");
      }
      else
      {
