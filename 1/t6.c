@@ -10,7 +10,7 @@ int main(void)
    long double average;
    int count;
    int check;
-   do
+   while (check != EOF)
    {
       check = scanf("%Lf", &i);
       if (check == EOF)
@@ -35,6 +35,6 @@ int main(void)
             smallest = i;
          }
       }
-   } while (check != EOF);
+   } 
    return 0;
 }
