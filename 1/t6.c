@@ -4,8 +4,8 @@
 int main(void)
 {
    long double i;
-   long double smallest = 100000;
-   long double largest = -100000;
+   long double smallest = 100001;
+   long double largest = -100001;
    long double total;
    long double average;
    int count;
@@ -26,11 +26,11 @@ int main(void)
       {
          total += i;
          count += 1;
-         if (i > largest || largest == -100000)
+         if (i > largest || largest ==-100000)
          {
             largest = i;
          }
-         if (i < smallest || smallest == 100000)
+         if (i < smallest || smallest ==100000)
          {
             smallest = i;
          }
