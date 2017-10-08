@@ -3,20 +3,20 @@
 
 int main(void)
 {
-   long double i;
-   long double smallest = 100001;
-   long double largest = -100001;
-   long double total;
-   long double average;
+   float i;
+   float smallest = 100000;
+   float largest = -100000;
+   float total;
+   float average;
    int count;
    int check;
    while (check != EOF)
    {
-      check = scanf("%Lf", &i);
+      check = scanf("%f", &i);
       if (check == EOF)
       {
          average=total/count;
-         printf("%0.2Lf %0.2Lf %0.2Lf\n", smallest, largest, average);
+         printf("%0.2f %0.2f %0.2f\n", smallest, largest, average);
       }
       else if (check == 0)
       {
