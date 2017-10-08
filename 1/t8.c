@@ -10,7 +10,11 @@ int main(){
          a++;
       }
       for(int i=0; i<=pyramid[1]-1; i++){
-	 if (i==0){
+         if (pyramid[2]==0){
+               printf("\n");
+               break;
+            }
+	 else if (i==0){
             for(int i=0; i<=pyramid[0]-1; i++){
                printf("#");
             }
