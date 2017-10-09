@@ -1,37 +1,33 @@
 #include <stdio.h>
 
-int main(){
-   char array[10000];
-   while (fgets(array, sizeof(array), stdin) != 0){
-      int a=0;
-      int j;
-      int pyramid[3];
-      for(int i=0; sscanf(array+i,"%d%n",&pyramid[a],&j)!=EOF; i+=j){
-         a++;
+int main() {
+   int pyramid[3];
+   int check;
+   for (int i=0; i<3; i++){
+      scanf("%d", &pyramid[i]);
+   }
+   for(int i=0; i<=pyramid[1]-1; i++){
+      if (i==0){
+         for(int i=0; i<=pyramid[0]-1; i++){
+            printf("#");
+         }
       }
-      for(int i=0; i<=pyramid[1]-1; i++){
-	 if (i==0){
-            for(int i=0; i<=pyramid[0]-1; i++){
+      else if (i==pyramid[1]-1){
+         for(int i=0; i<=pyramid[0]-1; i++){
+            printf("#");
+         }
+      }
+      else {
+	 for(int i=0; i<=pyramid[0]-1; i++){
+	    if (i==0 || i==pyramid[0]-1){
                printf("#");
             }
-         }
-         else if (i==pyramid[1]-1){
-            for(int i=0; i<=pyramid[0]-1; i++){
-               printf("#");
+	    else {
+	       printf(".");
             }
-         }
-         else {
-	    for(int i=0; i<=pyramid[0]-1; i++){
-	       if (i==0 || i==pyramid[0]-1){
-                  printf("#");
-               }
-	       else {
-	          printf(".");
-               }
-	    }  
-         } 
-         printf("\n");   
-      }
+	 }  
+      } 
+      printf("\n");   
    }
    return 0;
 }
