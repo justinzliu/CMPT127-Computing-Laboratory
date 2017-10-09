@@ -1,4 +1,3 @@
-#include <stdio.h>
 int scrambled(unsigned int a[], unsigned int b[], unsigned int len){
    int testsuma = 0;
    int testsumb = 0;
