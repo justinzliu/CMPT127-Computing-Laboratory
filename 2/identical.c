@@ -1,6 +1,6 @@
 int identical (int a[], int b[], unsigned int len){
    int identical;
-   for (int i=0; i<len-1; ++i){
+   for (int i=0; i<len; ++i){
       if (len == 0){
          i=-2;
       }
