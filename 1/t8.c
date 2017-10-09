@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-   char array[100];
+   char array[10000];
    while (fgets(array, sizeof(array), stdin) != 0){
       int a=0;
       int j;
