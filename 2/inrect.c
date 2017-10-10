@@ -1,8 +1,8 @@
 int InRectangle( float pt[2], float rect[4] ) {
-   int xmin;
-   int xmax;
-   int ymin;
-   int ymax;
+   float xmin;
+   float xmax;
+   float ymin;
+   float ymax;
    if (rect[0] > rect[2]) {
       xmax = rect[0];
       xmin = rect[2];
