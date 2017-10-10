@@ -15,13 +15,21 @@ int main() {
    xright = ceil( (pyramid[0]-1) + -(i-1) * (pyramid[0]/(2.0*pyramid[2])) ); 
       if (i==1){
          for(int j=0; j<=pyramid[0]-1; j++){
+            if (j < xright) {
             printf("#");
+            }
+            else {
+               printf("#\n");
+            }
          }
       }
       else {
          for(int j=0; j<=pyramid[0]-1; j++){
-            if (j == xleft || j == xright) {
+            if (j == xleft) {
                printf("#");
+            }
+            else if (j == xright) {
+               printf("#\n");
             }
             else if (j > xleft && j < xright) {
                if (i == pyramid[2]) {
@@ -31,12 +39,11 @@ int main() {
                   printf(".");
                }
             }
-            else {
+            else if (j < xright) {
                printf(" ");
             }
          }
-      } 
-      printf("\n");   
+      }    
    }
    return 0;
 }
