@@ -15,8 +15,13 @@ int main() {
       if ( c == '\n') {
          linecount += 1;
       }
-      if (cvalue < 65 || cvalue > 122 || (cvalue > 90 && cvalue < 97) && cvalue != 39) {
-         OutIn = 0;      
+      if (cvalue < 65 || cvalue > 122 || (cvalue > 90 && cvalue < 97) ) {
+         if (cvalue == 39) {
+            OutIn = 1;
+         }
+         else {
+            OutIn = 0;
+         }      
       }
       else if (OutIn == 0) {
          OutIn = 1;
