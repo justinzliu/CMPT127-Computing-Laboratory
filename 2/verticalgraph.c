@@ -18,7 +18,7 @@ int main() {
              printf("#");
           }
           else {
-             printf("t");
+             printf(" ");
           }
        }
        printf("\n");
