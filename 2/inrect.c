@@ -19,11 +19,11 @@ int InRectangle( float pt[2], float rect[4] ) {
       ymax = rect[1];
       ymin = rect[3];
    }
-   else if (rect[2] > rect[0]) {
+   else if (rect[3] > rect[1]) {
       ymax = rect[3];
       ymin = rect[1];
    }
-   else if (rect[0] == rect[2]) {
+   else if (rect[3] == rect[1]) {
       ymax = rect[1];
       ymin = rect[1];
    }
