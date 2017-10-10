@@ -12,13 +12,13 @@ int main() {
          max = input[j];
       }
    }
-   for (int k=max; k>0; k--) {
-       for (int l=0; l<80; l++) {
-          if (input[l] >= k) {
+   for (int k=max-1; k>=0; k--) {
+       for (int l=0; l<i; l++) {       
+          if (input[l] > k) {
              printf("#");
           }
           else {
-             printf(" ");
+             printf("t");
           }
        }
        printf("\n");
