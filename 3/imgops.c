@@ -60,7 +60,7 @@ uint8_t* copy( const uint8_t array[],
            unsigned int cols, 
            unsigned int rows )
 {
-  uint8_t* arr = malloc(sizeof(array[0])*rows*cols)
+  uint8_t* arr = malloc(sizeof(array[0])*rows*cols);
   if ( arr != NULL) {
      for (i=0;i<rows*cols;i++) {
         arr[i] = array[i];
