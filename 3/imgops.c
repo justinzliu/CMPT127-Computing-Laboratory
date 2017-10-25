@@ -127,23 +127,6 @@ void replace_color(  uint8_t array[],
 
 
 // flip the image, left-to-right, like in a mirror.
-void replace_color(  uint8_t array[], 
-		     unsigned int cols, 
-		     unsigned int rows,
-		     uint8_t pre_color,
-		     uint8_t post_color )
-{
-  for (int i=0;i<cols*rows;i++) {
-     if (array[i] == pre_color) {
-        array[i] = post_color;
-     }
-  }
-}
-
-/* TASK 3  - two functions */
-
-
-// flip the image, left-to-right, like in a mirror.
 void flip_horizontal( uint8_t array[], 
               unsigned int cols, 
               unsigned int rows )
