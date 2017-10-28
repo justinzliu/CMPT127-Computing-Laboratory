@@ -140,6 +140,20 @@ void flip_horizontal( uint8_t array[],
   }
 }
 
+// flip the image top-to-bottom.
+void flip_vertical( uint8_t array[], 
+            unsigned int cols, 
+            unsigned int rows )
+{
+  for (int i=0;i<cols;i++) {
+     for (int j=0;j<rows/2;j++) {
+        uint8_t tempvar = array[i+j*cols];
+        array[i+j*cols] = array[i+(rows-1-j)*cols];
+        array[i+(rows-1-j)*cols] = tempvar;
+     }
+  }
+}
+
 /* TASK 4 */
 
 // Find the first coordinate of the first pixel with a value that
@@ -284,8 +298,7 @@ void region_set( uint8_t array[],
          unsigned int bottom,
          uint8_t color )
 {
-   int regionSize = (top-bottom)*(right-left);
-   int emptyCount = 0;
+   unsigned int emptyCount = 0;
    int emptyTF = 1;
    for (int i=top; i<bottom; i++) {
       for (int j=right; j<left; j++) {
