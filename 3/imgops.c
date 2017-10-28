@@ -242,24 +242,31 @@ void normalize( uint8_t array[],
 // The value of a pixel at (p,q) in the new image is the average of               
 // the four pixels at (2p,2q), (2p+1,2q), (2p+1,2q+1), (2p,2q+1) in               
 // the original image.                                                            
-/*uint8_t* half( const uint8_t array[],
+uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
-  uint8_t* NEWarr[cols*rows] = malloc(sizeof(array[0])*cols/2*rows/2);
-  for (int i=0;i<rows;i+=2) {
-     NEWarr[i] = NEWarr[i]+array[j+i*cols];
-     if (i>0) {
-        NEWarr
-     }
-     for (int j=0; j<cols;j+=2) {
-        if (i==0
-        NEWarr[i] = array[i]+array[i+1];
+  unsigned int NEWcols = cols/2;
+  unsigned int NEWrows = rows/2;
+  uint8_t* NEWarr= malloc(sizeof(array[0])*NEWcols*NEWrows);
+  zero(NEWarr,NEWcols,NEWrows);
+  unsigned int k=0;
+  unsigned int l=0;
+  for (int i=1;i<rows;i+=2) {
+     //NEWarr[i] = NEWarr[i]+array[j+i*cols];
+     l=0;
+     for (int j=1; j<cols;j+=2) {
+        NEWarr[l+k*NEWcols] += array[j+1];
+        NEWarr[l+k*NEWcols] += array[j-1];
+        NEWarr[l+k*NEWcols] += array[j+(i-1)*cols];
+        NEWarr[l+k*NEWcols] += array[j+(i+1)*cols];
+        l+=1;
+     k+=1;
      }
   }
   return NEWarr;
 }
-*/
+
 
 
 
