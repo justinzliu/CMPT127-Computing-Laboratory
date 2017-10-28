@@ -66,7 +66,7 @@ uint8_t* copy( const uint8_t array[],
         arr[i] = array[i];
      }    
   }
- return NULL;
+ return arr;
 }
 
 
@@ -83,13 +83,13 @@ uint8_t min( const uint8_t array[],
 	     unsigned int cols, 
 	     unsigned int rows )
 {
-  int smallest = array[0];
+  unsigned int smallest = array[0];
   for (int i=1;i<cols*rows;i++){
      if (array[i]<smallest) {
         smallest = array[i];
      }
   }
-  return 0;
+  return smallest;
 }
 
 // Return the lightest color that appears in the array; i.e. the
@@ -98,13 +98,13 @@ uint8_t max( const uint8_t array[],
 		 unsigned int cols, 
 		 unsigned int rows )
 {
-  int largest = array[0];
+  unsigned int largest = array[0];
   for (int i=1;i<cols*rows;i++){
      if (array[i]>largest) {
         largest = array[i];
      }
   }
-  return 0;
+  return largest;
 }
 
 // TASK 2
@@ -153,7 +153,16 @@ int locate_color(  const uint8_t array[],
 		   unsigned int *x,
 		   unsigned int *y )
 {
-    // your code here
+    int* coordinates = malloc(2*sizeof(int))
+    for (int i=0;i<rows*cols;i++) {
+       if (array[i] == color) {
+          coordinates[0] = (i%cols);
+          coordinates[1] = (i/cols);
+          x = coordinates;
+          y = coordinates+1;
+          return 1;
+       }
+    }
     return 0;
 }
 
@@ -166,7 +175,9 @@ void invert( uint8_t array[],
          unsigned int cols, 
          unsigned int rows )
 {
-    // your code here
+    for (int i=0; i<rows*cols; i++) {
+       array[i] = 255-array[i]; 
+    }
 }
 
 /* TASK 6 */
@@ -179,7 +190,12 @@ void scale_brightness( uint8_t array[],
             unsigned int rows,
             double scale_factor )
 {
-  // your code here
+  for (int i=0; i<rows*cols; i++) {
+     array[i] = array[i]*scale_factor
+     if (array[i] > 255) {
+        array[i] = 255;
+     }
+  }
 }
 
 
@@ -192,7 +208,14 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-    // your code here
+   int INmax = max(array[],cols,rows);
+   int INmin = min(array[],cols,rows);
+   int INrange = INmax-INmin;
+   for (int i=0; i<rows*cols; i++) {
+      scale = (array[i]-INmin)/INrange;
+      normalizeValue = (255*scale);
+      array[i] = normalizeValue;
+   }
 }
 
 /* TASK 8 */
@@ -207,8 +230,18 @@ uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
-  // your code here
-  return NULL;
+  uint8_t* NEWarr[cols*rows] = malloc(sizeof(array[0])*cols/2*rows/2);
+  for (int i=0;i<rows;i+=2) {
+     NEWarr[i] = NEWarr[i]+array[j+i*cols];
+     if (i>0) {
+        NEWarr
+     }
+     for (int j=0; j<cols;j+=2) {
+        if (i==0
+        NEWarr[i] = array[i]+array[i+1];
+     }
+  }
+  return NEWarr;
 }
 
 
@@ -249,7 +282,27 @@ void region_set( uint8_t array[],
          unsigned int bottom,
          uint8_t color )
 {
-    // your code here
+   int regionSize = (top-bottom)*(right-left);
+   int emptyCount = 0;
+   int emptyTF = 1;
+   for (int i=top; i<bottom; i++) {
+      for (int j=right; j<left; j++) {
+         if (emptyTF == 1 && array[j+i*cols] == 0) {
+            emptyCount += 1;
+         }
+         else {
+            array[j+i*cols] = color;
+            emptyTF = 0;
+            if (emptyCount > 0) {
+               for (int k=top; k<=top+(emptyCount/2); k++) {
+                  for (int l=right; l<=right+(emptyCount%2); l++) {
+                     array[l+k*cols] = color;
+                  }
+               }
+            }
+         }
+      }
+   }
 }
 
 /* TASK 10 */
@@ -265,8 +318,13 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int right,
                     unsigned int bottom )
 {
-    // your code here
-    return 0;
+   unsigned long int sums;
+   for (int i=top; i<bottom; i++) {
+      for (int j=right; j<left; j++) {
+         sum += array[j+i*cols]
+      }
+   }
+   return sum;
 }
 
 /* TASK 11 */
@@ -283,8 +341,13 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int right,
               unsigned int bottom )
 {
-    // your code here
-    return NULL;
+   uint8_t* COPYarr = malloc(sizeof(array[0]*(right-left)*(top-bottom)));
+   int k=0;
+   for (int i=top; i<bottom; i++) {
+      for (int j=right; j<left; j++) {
+         COPYarr[k] = array[j+i*cols];
+         k+=1;   
+    return COPYarr;
 }
 
 
