@@ -153,7 +153,7 @@ int locate_color(  const uint8_t array[],
 		   unsigned int *x,
 		   unsigned int *y )
 {
-    int* coordinates = malloc(2*sizeof(int))
+    unsigned int* coordinates = malloc(2*sizeof(int));
     for (int i=0;i<rows*cols;i++) {
        if (array[i] == color) {
           coordinates[0] = (i%cols);
@@ -191,7 +191,7 @@ void scale_brightness( uint8_t array[],
             double scale_factor )
 {
   for (int i=0; i<rows*cols; i++) {
-     array[i] = array[i]*scale_factor
+     array[i] = array[i]*scale_factor;
      if (array[i] > 255) {
         array[i] = 255;
      }
@@ -208,9 +208,11 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-   int INmax = max(array[],cols,rows);
-   int INmin = min(array[],cols,rows);
-   int INrange = INmax-INmin;
+   unsigned int INmax = max(array,cols,rows);
+   unsigned int INmin = min(array,cols,rows);
+   unsigned int INrange = INmax-INmin;
+   unsigned int scale;
+   unsigned int normalizeValue;
    for (int i=0; i<rows*cols; i++) {
       scale = (array[i]-INmin)/INrange;
       normalizeValue = (255*scale);
@@ -226,7 +228,7 @@ void normalize( uint8_t array[],
 // The value of a pixel at (p,q) in the new image is the average of               
 // the four pixels at (2p,2q), (2p+1,2q), (2p+1,2q+1), (2p,2q+1) in               
 // the original image.                                                            
-uint8_t* half( const uint8_t array[],
+/*uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
@@ -243,7 +245,7 @@ uint8_t* half( const uint8_t array[],
   }
   return NEWarr;
 }
-
+*/
 
 
 
@@ -318,10 +320,10 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int right,
                     unsigned int bottom )
 {
-   unsigned long int sums;
+   unsigned long int sum;
    for (int i=top; i<bottom; i++) {
       for (int j=right; j<left; j++) {
-         sum += array[j+i*cols]
+         sum += array[j+i*cols];
       }
    }
    return sum;
@@ -347,7 +349,9 @@ uint8_t* region_copy( const uint8_t array[],
       for (int j=right; j<left; j++) {
          COPYarr[k] = array[j+i*cols];
          k+=1;   
-    return COPYarr;
+         }
+   }
+   return COPYarr;
 }
 
 
