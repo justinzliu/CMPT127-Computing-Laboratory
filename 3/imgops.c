@@ -344,7 +344,7 @@ unsigned long int region_integrate( const uint8_t array[],
 {
    unsigned long int sum;
    for (int i=top; i<bottom; i++) {
-      for (int j=right; j<left; j++) {
+      for (int j=left; j<right; j++) {
          sum += array[j+i*cols];
       }
    }
@@ -367,13 +367,18 @@ uint8_t* region_copy( const uint8_t array[],
 {
    uint8_t* COPYarr = malloc(sizeof(array[0]*(right-left)*(top-bottom)));
    int k=0;
-   for (int i=top; i<bottom; i++) {
-      for (int j=right; j<left; j++) {
-         COPYarr[k] = array[j+i*cols];
-         k+=1;   
-         }
+   if (COPYarr == NULL) {
+      return NULL;
    }
-   return COPYarr;
+   else {
+      for (int i=top; i<bottom; i++) {
+         for (int j=left; j<right; j++) {
+            COPYarr[k] = array[j+i*cols];
+            k+=1;   
+            }
+      }
+      return COPYarr;
+   }
 }
 
 
