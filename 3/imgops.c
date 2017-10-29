@@ -164,16 +164,16 @@ int locate_color(  const uint8_t array[],
 		   unsigned int cols, 
 		   unsigned int rows,
 		   uint8_t color,
-		   unsigned int *x,
-		   unsigned int *y )
+		   unsigned int **x,
+		   unsigned int **y )
 {
-    unsigned int* coordinates = malloc(2*sizeof(int));
+    unsigned int* coordinates = malloc(2*sizeof(unsigned int));
     for (int i=0;i<rows*cols;i++) {
        if (array[i] == color) {
           coordinates[0] = (i%cols);
           coordinates[1] = (i/cols);
-          x = coordinates;
-          y = coordinates+1;
+          *x = coordinates;
+          *y = coordinates+1;
           return 1;
        }
     }
@@ -205,7 +205,7 @@ void scale_brightness( uint8_t array[],
             double scale_factor )
 {
   for (int i=0; i<rows*cols; i++) {
-     array[i] = array[i]*scale_factor;
+     array[i] = round(array[i]*scale_factor);
      if (array[i] > 255) {
         array[i] = 255;
      }
@@ -222,14 +222,18 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-   unsigned int INmax = max(array,cols,rows);
-   unsigned int INmin = min(array,cols,rows);
-   unsigned int INrange = INmax-INmin;
-   unsigned int scale;
+   float INmax = max(array,cols,rows);
+   printf("max = %f\n", INmax);
+   float INmin = min(array,cols,rows);
+   printf("min = %f\n", INmin);
+   float INrange = INmax-INmin;
+   printf("range = %f\n", INrange);
+   float scale;
    unsigned int normalizeValue;
+   printf("\n");
    for (int i=0; i<rows*cols; i++) {
       scale = (array[i]-INmin)/INrange;
-      normalizeValue = (255*scale);
+      normalizeValue = round((255*scale));
       array[i] = normalizeValue;
    }
 }
