@@ -164,16 +164,14 @@ int locate_color(  const uint8_t array[],
 		   unsigned int cols, 
 		   unsigned int rows,
 		   uint8_t color,
-		   unsigned int **x,
-		   unsigned int **y )
+		   unsigned int *x,
+		   unsigned int *y )
 {
-    unsigned int* coordinates = malloc(2*sizeof(unsigned int));
+    unsigned int* coordinates = malloc(sizeof(unsigned int)*2);
     for (int i=0;i<rows*cols;i++) {
        if (array[i] == color) {
-          coordinates[0] = (i%cols);
-          coordinates[1] = (i/cols);
-          *x = coordinates;
-          *y = coordinates+1;
+          x = &coordinates;
+          y = &coordinates+1;
           return 1;
        }
     }
@@ -312,7 +310,7 @@ void region_set( uint8_t array[],
    unsigned int emptyCount = 0;
    int emptyTF = 1;
    for (int i=top; i<bottom; i++) {
-      for (int j=right; j<left; j++) {
+      for (int j=left; j<right; j++) {
          if (emptyTF == 1 && array[j+i*cols] == 0) {
             emptyCount += 1;
          }
@@ -320,8 +318,8 @@ void region_set( uint8_t array[],
             array[j+i*cols] = color;
             emptyTF = 0;
             if (emptyCount > 0) {
-               for (int k=top; k<=top+(emptyCount/2); k++) {
-                  for (int l=right; l<=right+(emptyCount%2); l++) {
+               for (int k=top; k<=top+(emptyCount/(right-left)); k++) {
+                  for (int l=left; l<=left+(emptyCount%(right-left)); l++) {
                      array[l+k*cols] = color;
                   }
                }
