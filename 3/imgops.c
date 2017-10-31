@@ -167,17 +167,15 @@ int locate_color(  const uint8_t array[],
 		   unsigned int *x,
 		   unsigned int *y )
 {
-    unsigned int* coordinates = malloc(sizeof(unsigned int)*2);
     for (int i=0;i<rows*cols;i++) {
        if (array[i] == color) {
-          x = &coordinates;
-          y = &coordinates+1;
+          *x = i%cols;
+          *y = i/cols;        
           return 1;
        }
     }
     return 0;
 }
-
 
 /* TASK 5 */
 
@@ -307,26 +305,17 @@ void region_set( uint8_t array[],
          unsigned int bottom,
          uint8_t color )
 {
-   unsigned int emptyCount = 0;
-   int emptyTF = 1;
-   for (int i=top; i<bottom; i++) {
-      for (int j=left; j<right; j++) {
-         if (emptyTF == 1 && array[j+i*cols] == 0) {
-            emptyCount += 1;
-         }
-         else {
-            array[j+i*cols] = color;
-            emptyTF = 0;
-            if (emptyCount > 0) {
-               for (int k=top; k<=top+(emptyCount/(right-left)); k++) {
-                  for (int l=left; l<=left+(emptyCount%(right-left)); l++) {
-                     array[l+k*cols] = color;
-                  }
-               }
-            }
+   if (left == right || top == bottom) {
+   }
+   else {
+      assert(left!=right && top!=bottom)
+      for (int i=top; i<bottom; i++) {
+         for (int j=left; j<right; j++) {
+            array[j+i*(right-left)] = color;
          }
       }
    }
+   return;
 }
 
 /* TASK 10 */
@@ -342,10 +331,14 @@ unsigned long int region_integrate( const uint8_t array[],
                     unsigned int right,
                     unsigned int bottom )
 {
-   unsigned long int sum;
-   for (int i=top; i<bottom; i++) {
-      for (int j=left; j<right; j++) {
-         sum += array[j+i*cols];
+   unsigned long int sum = 0;
+   if (left == right || top == bottom) {
+   }
+   else {
+      for (int i=top; i<bottom; i++) {
+         for (int j=left; j<right; j++) {
+            sum += array[j+i*(right-left)];
+         }
       }
    }
    return sum;
@@ -365,20 +358,20 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int right,
               unsigned int bottom )
 {
-   uint8_t* COPYarr = malloc(sizeof(array[0]*(right-left)*(top-bottom)));
+   uint8_t* COPYarr = malloc(sizeof(array[0])*(right-left)*(top-bottom)));
    int k=0;
-   if (COPYarr == NULL) {
-      return NULL;
-   }
-   else {
+   if (COPYarr != NULL) {
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
-            COPYarr[k] = array[j+i*cols];
+            COPYarr[k] = array[j+i*(right-left)];
             k+=1;   
             }
       }
-      return COPYarr;
    }
+   else {
+      COPYarr = NULL;
+   }
+   return COPYarr;
 }
 
 
