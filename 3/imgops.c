@@ -311,8 +311,8 @@ void region_set( uint8_t array[],
       //assert(left!=right && top!=bottom);
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
-            //array[j+i*(right-left)] = color;
-            set_pixel(array, cols, rows, j, i, color );
+            array[j+i*(cols)] = color;
+            //set_pixel(array, cols, rows, j, i, color );
          }
       }
    }
@@ -338,7 +338,7 @@ unsigned long int region_integrate( const uint8_t array[],
    else {
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
-            sum += array[j+i*(right-left)];
+            sum += array[j+i*(cols)];
          }
       }
    }
@@ -364,7 +364,7 @@ uint8_t* region_copy( const uint8_t array[],
    if (COPYarr != NULL) {
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
-            COPYarr[k] = array[j+i*(right-left)];
+            COPYarr[k] = array[j+i*(cols)];
             k+=1;   
             }
       }
