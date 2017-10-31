@@ -308,7 +308,7 @@ void region_set( uint8_t array[],
    if (left == right || top == bottom) {
    }
    else {
-      assert(left!=right && top!=bottom)
+      //assert(left!=right && top!=bottom)
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
             array[j+i*(right-left)] = color;
@@ -358,7 +358,7 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int right,
               unsigned int bottom )
 {
-   uint8_t* COPYarr = malloc(sizeof(array[0])*(right-left)*(top-bottom)));
+   uint8_t* COPYarr = malloc(sizeof(array[0])*(right-left)*(top-bottom));
    int k=0;
    if (COPYarr != NULL) {
       for (int i=top; i<bottom; i++) {
