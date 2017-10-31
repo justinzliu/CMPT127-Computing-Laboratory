@@ -370,7 +370,7 @@ uint8_t* region_copy( const uint8_t array[],
       }
    }
    else {
-      COPYarr = NULL;
+      return NULL;
    }
    return COPYarr;
 }
