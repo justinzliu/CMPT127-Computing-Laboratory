@@ -312,7 +312,7 @@ void region_set( uint8_t array[],
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
             //array[j+i*(right-left)] = color;
-            set_pixel(array, cols, rows, x, y, color );
+            set_pixel(array, cols, rows, j, i, color );
          }
       }
    }
