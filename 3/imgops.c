@@ -308,10 +308,11 @@ void region_set( uint8_t array[],
    if (left == right || top == bottom) {
    }
    else {
-      //assert(left!=right && top!=bottom)
+      //assert(left!=right && top!=bottom);
       for (int i=top; i<bottom; i++) {
          for (int j=left; j<right; j++) {
-            array[j+i*(right-left)] = color;
+            //array[j+i*(right-left)] = color;
+            set_pixel(array, cols, rows, x, y, color );
          }
       }
    }
