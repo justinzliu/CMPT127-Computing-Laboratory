@@ -359,9 +359,10 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int right,
               unsigned int bottom )
 {
+   uint8_t* COPYarr;
    if (right!=left && top!=bottom) {
-   uint8_t* COPYarr = malloc(sizeof(array[0])*(right-left)*(bottom-top));
-   int k=0;
+      COPYarr = malloc(sizeof(array[0])*(right-left)*(bottom-top));
+      int k=0;
    for (int i=top; i<bottom; i++) {
       for (int j=left; j<right; j++) {
          COPYarr[k] = array[j+i*(cols)];
