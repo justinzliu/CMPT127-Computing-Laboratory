@@ -200,12 +200,14 @@ void scale_brightness( uint8_t array[],
             unsigned int rows,
             double scale_factor )
 {
-  for (int i=0; i<(rows*cols*sizeof(array[0])); i++) {
-     if (array[i] > ceil(255/scale_factor)) {
+  int highestval = ceil(255/scale_factor);
+  for (int i=0; i<(rows*cols); i++) {
+     if (array[i] > highestval) {
         array[i] = 255;
      }
      else {
-        array[i] = round(array[i]*scale_factor);
+        double temp = array[i]*scale_factor;
+        array[i] = (uint8_t)round(temp);
      }
   }
   return;
@@ -256,10 +258,16 @@ uint8_t* half( const uint8_t array[],
   zero(NEWarr,NEWcols,NEWrows);
   unsigned int k=0;
   unsigned int l=0;
+  int j=0;
   for (int i=0;i<rows;i+=2) {
-     //NEWarr[i] = NEWarr[i]+array[j+i*cols];
+     NEWarr[+k*NEWcols] = NEWarr[i]+array[j+i*cols];
      l=0;
-     for (int j=1; j<cols;j+=2) {
+     for (int j=0; j<cols;j+=2) {
+        //TOP
+        if (k==0) {
+        //TOP LEFT
+           NEWarr[i]
+        }
         NEWarr[l+k*NEWcols] += array[j+1];
         NEWarr[l+k*NEWcols] += array[j-1];
         NEWarr[l+k*NEWcols] += array[j+(i-1)*cols];
