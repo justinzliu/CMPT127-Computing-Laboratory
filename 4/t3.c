@@ -6,7 +6,6 @@ void life ( uint8_t array[],
             unsigned int rows )
 {
       uint8_t arr[cols*rows];
-      }
       for (int i=0;i<rows*cols;i++) {
          arr[i] = 0;
       }
@@ -160,7 +159,7 @@ void life ( uint8_t array[],
                   }
                   if (array[j+(i-1)*cols] > 0) {
                      count+=1;
-                  }
+             modified     }
                   if (array[j-1+(i-1)*cols] > 0) {
                      count+=1;
                   }  
