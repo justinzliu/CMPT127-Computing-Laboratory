@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 void draw_rectangle( uint8_t array[],
                      unsigned int cols,
