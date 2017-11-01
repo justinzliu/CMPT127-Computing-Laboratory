@@ -266,7 +266,7 @@ uint8_t* half( const uint8_t array[],
         //TOP
         if (k==0) {
         //TOP LEFT
-           NEWarr[i]
+           NEWarr[i];
         }
         NEWarr[l+k*NEWcols] += array[j+1];
         NEWarr[l+k*NEWcols] += array[j-1];
