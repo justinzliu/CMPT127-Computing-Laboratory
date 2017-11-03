@@ -251,9 +251,6 @@ void normalize( uint8_t array[],
 uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
-uint8_t* half( const uint8_t array[],
-	       unsigned int cols,
-	       unsigned int rows )
 {
   unsigned int NEWcols = cols/2;
   unsigned int NEWrows = rows/2;
