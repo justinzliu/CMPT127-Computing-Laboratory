@@ -258,10 +258,10 @@ uint8_t* half( const uint8_t array[],
   zero(NEWarr,NEWcols,NEWrows);
   for (int i=0;i<NEWrows;i++) {
      for (int j=0; j<NEWcols;j++) {
-        NEWarr[j+i*NEWcols] += array[2*j+2*i];
-        NEWarr[j+i*NEWcols] += array[2*(j+1)+2*i];
-        NEWarr[j+i*NEWcols] += array[2*j+2*(i+1)];
-        NEWarr[j+i*NEWcols] += array[2*(j+1)+2*(i+1)];
+        NEWarr[j+i*NEWcols] += array[(2*j)+(2*i*cols)];
+        NEWarr[j+i*NEWcols] += array[(2*j)+1+(2*i*cols)];
+        NEWarr[j+i*NEWcols] += array[(2*j)+(2*i*cols)+cols];
+        NEWarr[j+i*NEWcols] += array[(2*j)+1+(2*i*cols)+cols];
         NEWarr[j+i*NEWcols] = round(NEWarr[j+i*NEWcols]/4.0);
      }
   }
