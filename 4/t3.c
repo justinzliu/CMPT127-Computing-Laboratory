@@ -90,12 +90,12 @@ void life ( uint8_t array[],
          //CREATE NEXT STEP OF LIFE
          if (array[j+i*cols] == 0) {
             if (count == 3) {
-               arr[j+i*cols] = 1;
+               arr[j+i*cols] = 255;
             }
          }
          else {
             if (count == 3 || count == 2) {
-               arr[j+i*cols] = 1;
+               arr[j+i*cols] = 255;
             }
          }
       }
