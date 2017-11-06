@@ -265,7 +265,6 @@ uint8_t* half( const uint8_t array[],
         tempvar += array[(2*j)+1+(2*i*cols)+cols];
         NEWarr[j+(i*NEWcols)] = round(tempvar/4.0);
         tempvar = 0.0;
-        printf("\n");
      }
   }
   return NEWarr;
