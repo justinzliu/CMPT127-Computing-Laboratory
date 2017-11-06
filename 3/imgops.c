@@ -256,13 +256,14 @@ uint8_t* half( const uint8_t array[],
   unsigned int NEWrows = rows/2;
   uint8_t* NEWarr= malloc(sizeof(array[0])*NEWcols*NEWrows);
   zero(NEWarr,NEWcols,NEWrows);
+  float tempvar = 0;
   for (int i=0;i<NEWrows;i++) {
      for (int j=0; j<NEWcols;j++) {
-        NEWarr[j+i*NEWcols] += array[(2*j)+(2*i*cols)];
-        NEWarr[j+i*NEWcols] += array[(2*j)+1+(2*i*cols)];
-        NEWarr[j+i*NEWcols] += array[(2*j)+(2*i*cols)+cols];
-        NEWarr[j+i*NEWcols] += array[(2*j)+1+(2*i*cols)+cols];
-        NEWarr[j+i*NEWcols] = round(NEWarr[j+i*NEWcols]/4.0);
+        tempvar += array[(2*j)+(2*i*cols)];
+        tempvar += array[(2*j)+1+(2*i*cols)];
+        tempvar += array[(2*j)+(2*i*cols)+cols];
+        tempvar += array[(2*j)+1+(2*i*cols)+cols];
+        NEWarr[j+i*NEWcols] = round(tempvar/4.0);
      }
   }
   return NEWarr;
