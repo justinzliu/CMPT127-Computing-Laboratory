@@ -256,8 +256,9 @@ uint8_t* half( const uint8_t array[],
   unsigned int NEWrows = rows/2;
   uint8_t* NEWarr= malloc(sizeof(array[0])*NEWcols*NEWrows);
   zero(NEWarr,NEWcols,NEWrows);
-  float tempvar = 0;
+  float tempvar;
   for (int i=0;i<NEWrows;i++) {
+     tempvar = 0.0;
      for (int j=0; j<NEWcols;j++) {
         tempvar += array[(2*j)+(2*i*cols)];
         tempvar += array[(2*j)+1+(2*i*cols)];
