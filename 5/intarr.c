@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*
+
 typedef struct {
    int* data;
    unsigned int len;
@@ -13,7 +13,6 @@ typedef enum {
   INTARR_BADALLOC,
   INTARR_NOTFOUND
 } intarr_result_t;
-*/
 
 /* LAB 5 TASK 1 */
 
