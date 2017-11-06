@@ -44,7 +44,7 @@ void intarr_destroy( intarr_t* ia ) {
 intarr_result_t intarr_set( intarr_t* ia, 
 			    unsigned int index, 
 			    int val ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 // If index is valid and i is non-null, set *i to ia->data[index] and return
@@ -53,7 +53,7 @@ intarr_result_t intarr_set( intarr_t* ia,
 intarr_result_t intarr_get( const intarr_t* ia, 
 			    unsigned int index, 
 			    int* i ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 3 */
@@ -73,7 +73,7 @@ intarr_t* intarr_copy( const intarr_t* ia ) {
 // ia are sorted on return. If ia is null, return
 // INTARR_BADARRAY.
 intarr_result_t intarr_sort( intarr_t* ia ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 5 */
@@ -84,7 +84,7 @@ intarr_result_t intarr_sort( intarr_t* ia ) {
 // the array, leave *i unmodified and return INTARR_NOTFOUND. If ia is
 // null, return INTARR_BADARRAY.
 intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 6 */
@@ -93,7 +93,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 // If the array is not empty, remove the value with the highest index
@@ -101,7 +101,7 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 // then return INTARR_OK. If the array is empty, leave *i unmodified
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 7 */
@@ -113,7 +113,7 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
 // INTARR_OK, otherwise return INTARR_BADALLOC. If ia is null, return
 // INTARR_BADARRAY.
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
-   return NULL;
+   return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 8 */
