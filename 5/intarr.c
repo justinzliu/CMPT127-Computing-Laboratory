@@ -30,7 +30,7 @@ intarr_t* intarr_create( unsigned int len ) {
 // frees all memory allocated for ia. If the pointer is null, do
 // nothing. If the ia->data is null, do not attempt to free it.
 void intarr_destroy( intarr_t* ia ) {
-   if (ia != NULL) {
+   if (ia->data != NULL) {
       free(ia);
    }
    return;
