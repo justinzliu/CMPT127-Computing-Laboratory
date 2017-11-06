@@ -258,13 +258,14 @@ uint8_t* half( const uint8_t array[],
   zero(NEWarr,NEWcols,NEWrows);
   float tempvar;
   for (int i=0;i<NEWrows;i++) {
-     tempvar = 0.0;
      for (int j=0; j<NEWcols;j++) {
         tempvar += array[(2*j)+(2*i*cols)];
         tempvar += array[(2*j)+1+(2*i*cols)];
         tempvar += array[(2*j)+(2*i*cols)+cols];
         tempvar += array[(2*j)+1+(2*i*cols)+cols];
-        NEWarr[j+i*NEWcols] = round(tempvar/4.0);
+        NEWarr[j+(i*NEWcols)] = round(tempvar/4.0);
+        tempvar = 0.0;
+        printf("\n");
      }
   }
   return NEWarr;
