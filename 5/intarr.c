@@ -64,9 +64,11 @@ intarr_result_t intarr_get( const intarr_t* ia,
 			    unsigned int index, 
 			    int* i ) 
 {
-   else if (index < sizeof(ia->data)/sizeof(int)) {
-      ia->data[index] = val;
+   if (index < sizeof(ia->data)/sizeof(int) && i != NULL) {
+      *i = ia->data[index];
       return INTARR_OK;
+   }
+   return INSTARR_BADINDEX;
 }
 
 /* LAB 5 TASK 3 */
