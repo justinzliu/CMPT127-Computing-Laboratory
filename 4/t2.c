@@ -21,11 +21,8 @@ void draw_rectangle( uint8_t array[],
 {
    int TBboundary = y+rect_height;
    int RLboundary = x+rect_width;
-   //NO RECTANGLE
-   if (rect_width == 0 || rect_height == 0) {
-   }
    //RECTANGLE DRAWS DOWN
-   else if (rect_height > 0) {
+   if (rect_height > 0) {
       for (int i=y; i<TBboundary; i++) {
          //RECTANGLE DRAWS RIGHT
          if (rect_width > 0) {
@@ -44,10 +41,10 @@ void draw_rectangle( uint8_t array[],
          else if (rect_width < 0) {
             for (int j=x;j>RLboundary; j--) {
                if (check_boundary(cols,rows,x,y,i,j)==1) {          
-                  if (i == y || TBboundary-1) {
+                  if (i == y || i == TBboundary-1) {
                      array[j+i*cols] = color;
                   }
-                  else if (j==x || j==RLboundary+1) {
+                  else if (j == x || j == RLboundary +1 ) {
                      array[j+i*cols] = color;            
                   }
                }
@@ -58,12 +55,11 @@ void draw_rectangle( uint8_t array[],
    //RECTANGLE DRAWS UP
    else if (rect_height < 0) {
       for (int i=y; i>TBboundary; i--) {
-
          //RECTANGLE DRAWS RIGHT
          if (rect_width > 0) {
             for (int j=x;j<RLboundary; j++) {
                if (check_boundary(cols,rows,x,y,i,j)==1) {
-                  if (i == y || TBboundary+1) {
+                  if (i == y || i == TBboundary+1) {
                      array[j+i*cols] = color;
                   }
                   else if (j==x || j==RLboundary-1) {
@@ -76,10 +72,10 @@ void draw_rectangle( uint8_t array[],
          else if (rect_width < 0) {
             for (int j=x;j>RLboundary; j--) {
                if (check_boundary(cols,rows,x,y,i,j)==1) {
-                  if (i == y || TBboundary+1) {
+                  if (i == y || i == TBboundary+1) {
                      array[j+i*cols] = color;
                   }
-                  else if (j==x || j==RLboundary+1) {
+                  else if (j==x || j == RLboundary+1) {
                      array[j+i*cols] = color;            
                   }
                }
