@@ -56,7 +56,7 @@ intarr_result_t intarr_set( intarr_t* ia,
 			    int val ) 
 {
    if (ia == NULL) {
-      return INSTARR_BADARRAY;
+      return INTARR_BADARRAY;
    }
    else if (index < len) {
       ia->data[index] = val;
@@ -72,11 +72,11 @@ intarr_result_t intarr_get( const intarr_t* ia,
 			    unsigned int index, 
 			    int* i ) 
 {
-   if (index < sizeof(ia->data)/sizeof(int) && i != NULL) {
+   if (index < len && i != NULL) {
       *i = ia->data[index];
       return INTARR_OK;
    }
-   return INSTARR_BADINDEX;
+   return INTARR_BADINDEX;
 }
 
 /* LAB 5 TASK 3 */
