@@ -1,5 +1,9 @@
+#include <assert.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 typedef struct {
    int* data;
@@ -52,13 +56,13 @@ intarr_result_t intarr_set( intarr_t* ia,
 			    int val ) 
 {
    if (ia == NULL) {
-      return INSTARR_BADINDEX;
+      return INSTARR_BADARRAY;
    }
-   else if (index < sizeof(ia->data)/sizeof(int)) {
+   else if (index < len) {
       ia->data[index] = val;
       return INTARR_OK;
    }
-   return INTARR_BADARRAY;
+   return INTARR_BADINDEX;
 }
 
 // If index is valid and i is non-null, set *i to ia->data[index] and return
