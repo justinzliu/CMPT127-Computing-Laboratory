@@ -20,7 +20,7 @@ typedef enum {
 // (i.e. memory allocation succeeds), returns a pointer to a
 // newly-allocated intarr_t.  If unsuccessful, returns a null pointer.
 intarr_t* intarr_create( unsigned int len ) {
-   intarr_t* ptr = malloc(sizeof(intarr_t)*len);
+   intarr_t* ptr = malloc(len);
    if (ptr != NULL) {
       return ptr;
    }
