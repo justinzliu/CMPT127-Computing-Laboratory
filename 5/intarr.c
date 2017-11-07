@@ -58,7 +58,7 @@ intarr_result_t intarr_set( intarr_t* ia,
    if (ia == NULL) {
       return INTARR_BADARRAY;
    }
-   else if (index < len) {
+   else if (index < ia->len) {
       ia->data[index] = val;
       return INTARR_OK;
    }
@@ -72,7 +72,10 @@ intarr_result_t intarr_get( const intarr_t* ia,
 			    unsigned int index, 
 			    int* i ) 
 {
-   if (index < len && i != NULL) {
+   if (ia == NULL) {
+      return INTARR_BADARRAY;
+   }
+   if (index < ia->len && i != NULL) {
       *i = ia->data[index];
       return INTARR_OK;
    }
@@ -85,7 +88,9 @@ intarr_result_t intarr_get( const intarr_t* ia,
 // data (we call this a "deep copy"). If unsuccessful (i.e. memory
 // allocation for the copy fails, or ia is null), return a null pointer. 
 intarr_t* intarr_copy( const intarr_t* ia ) {
-
+   intarr_t* COPYia = ia;
+   COPYia->data = malloc((COPYia->len)*sizeof(int));
+   memcpy(COPYia->data,ia->len);
    return NULL;
 }
 
