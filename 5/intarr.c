@@ -160,7 +160,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
    int* tempdata = realloc(ia->data,((ia->len)+1)*sizeof(int));
    if (tempdata != 0) {
-      tempdata[len] = val;
+      tempdata[ia->len] = val;
       ia->data = tempdata;
       ia->len = (ia->len)+1;
       return INTARR_OK;
