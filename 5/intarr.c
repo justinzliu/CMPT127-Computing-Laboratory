@@ -141,7 +141,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
    if (ia != 0 && ia->data != 0) {
       for (int i=0; i<(ia->len); i++) {
          if ((ia->data[i]) == target) {
-            *i = i;
+            i = ia->&data[i];
             return INTARR_OK;
          }
          else {
@@ -158,6 +158,14 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
+   int* tempdata = realloc(ia->data,(ia->len)+1);
+   if (tempdata != 0) {
+      ia->data = tempdata;
+      return INTARR_OK;
+   }
+   else {
+      return INTARR_BADALLOC;
+   }
    return INTARR_BADARRAY;
 }
 
@@ -166,6 +174,21 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 // then return INTARR_OK. If the array is empty, leave *i unmodified
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
+   if (ia != 0) {
+      if (ia->data != NULL) {
+         i = ia->&data[(ia->len)-1];
+         unsigned int numbytes = (ia->(len-1))*sizeof(int);
+         int* tempdata = malloc(numbytes);
+         if (tempdata != 0) {
+            memcpy(tempdata,ia->data,numbytes);
+            ia->data = tempdata;
+            return INTARR_OK;
+         }
+      }
+      else {
+         return INTARR_BADINDEX;
+      }
+   }
    return INTARR_BADARRAY;
 }
 
