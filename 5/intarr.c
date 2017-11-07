@@ -18,6 +18,23 @@ typedef enum {
   INTARR_NOTFOUND
 } intarr_result_t;
 
+int insertion_sort(int arr[], int len) {
+   int tempvar;
+   for ( int i=1; i <= len-1; i++ ) {
+      int x = arr[i];
+      int j = i;
+      while ( j > 0 && x < arr[j-1] ) { 
+         tempvar = arr[j];
+         arr[j] = arr[j-1];
+         arr[j-1] = tempvar;
+         j--;
+      }
+   }
+   return 0;
+}
+
+int insertion_sort(int arr[], int len);
+
 /* LAB 5 TASK 1 */
 
 // Create a new intarr_t with initial size len.  If successful
@@ -106,8 +123,9 @@ intarr_t* intarr_copy( const intarr_t* ia ) {
 // ia are sorted on return. If ia is null, return
 // INTARR_BADARRAY.
 intarr_result_t intarr_sort( intarr_t* ia ) {
-   if (ia != 0) {
-      
+   if (ia != 0 && ia->data != 0) {
+      insertion_sort(ia->data,ia->len);
+      return INTARR_OK;
    }
    return INTARR_BADARRAY;
 }
@@ -120,6 +138,17 @@ intarr_result_t intarr_sort( intarr_t* ia ) {
 // the array, leave *i unmodified and return INTARR_NOTFOUND. If ia is
 // null, return INTARR_BADARRAY.
 intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
+   if (ia != 0 && ia->data != 0) {
+      for (int i=0; i<(ia->len); i++) {
+         if ((ia->data[i]) == target) {
+            *i = i;
+            return INTARR_OK;
+         }
+         else {
+            return INTARR_NOTFOUND;
+         }
+      }
+   }
    return INTARR_BADARRAY;
 }
 
