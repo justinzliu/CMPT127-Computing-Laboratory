@@ -37,10 +37,10 @@ intarr_t* intarr_create( unsigned int len )
 // nothing. If the ia->data is null, do not attempt to free it.
 void intarr_destroy( intarr_t* ia ) 
 {
-   if (ia->data != NULL) {
+   if (ia->data != 0) {
       free(ia);
    }
-   if (ia != NULL) {
+   if (ia != 0) {
       free(ia);
    }
    return;
@@ -55,7 +55,7 @@ intarr_result_t intarr_set( intarr_t* ia,
 			    unsigned int index, 
 			    int val ) 
 {
-   if (ia == NULL) {
+   if (ia == 0) {
       return INTARR_BADARRAY;
    }
    else if (index < ia->len) {
@@ -72,10 +72,10 @@ intarr_result_t intarr_get( const intarr_t* ia,
 			    unsigned int index, 
 			    int* i ) 
 {
-   if (ia == NULL) {
+   if (ia == 0) {
       return INTARR_BADARRAY;
    }
-   if (index < ia->len && i != NULL) {
+   if (index < ia->len && i != 0) {
       *i = ia->data[index];
       return INTARR_OK;
    }
@@ -88,10 +88,13 @@ intarr_result_t intarr_get( const intarr_t* ia,
 // data (we call this a "deep copy"). If unsuccessful (i.e. memory
 // allocation for the copy fails, or ia is null), return a null pointer. 
 intarr_t* intarr_copy( const intarr_t* ia ) {
-   const intarr_t* COPYia = ia;
-   unsigned int numbytes = (COPYia->len)*sizeof(int);
+   const intarr_t* COPYia;
+   unsigned int numbytes = (ia->len)*sizeof(int);
    COPYia->data = malloc(numbytes);
-   memcpy(COPYia->data,ia->&len,numbytes);
+   if (COPYia->data != 0 && ia != 0) {
+      memcpy(COPYia->data,ia->data,numbytes);
+      return COPYia;
+   }
    return NULL;
 }
 
