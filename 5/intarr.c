@@ -141,7 +141,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
    if (ia != 0 && ia->data != 0) {
       for (int i=0; i<(ia->len); i++) {
          if ((ia->data[i]) == target) {
-            i = ia->&(data[i]);
+            i = &(ia->data[i]);
             return INTARR_OK;
          }
          else {
@@ -176,8 +176,8 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
    if (ia != 0) {
       if (ia->data != NULL) {
-         i = ia->&(data[(ia->len)-1]);
-         unsigned int numbytes = (ia->(len-1))*sizeof(int);
+         i = &(ia->data[(ia->len)-1]);
+         unsigned int numbytes = ((ia->len)-1)*sizeof(int);
          int* tempdata = malloc(numbytes);
          if (tempdata != 0) {
             memcpy(tempdata,ia->data,numbytes);
