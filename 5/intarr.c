@@ -180,7 +180,7 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
    if (ia != 0) {
       if (ia->data != NULL && i != NULL) {
-         i = &(ia->data[ia->len]);
+         *i = ia->data[ia->len];
          unsigned int numbytes = ((ia->len)-1)*sizeof(int);
          int* tempdata = malloc(numbytes);
          if (tempdata != 0) {
