@@ -140,9 +140,9 @@ intarr_result_t intarr_sort( intarr_t* ia ) {
 intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
    if (ia != 0 && ia->data != 0) {
       for (int j=0; j<(ia->len); j++) {
-         if ((ia->data[j]) == target) {
+         if (ia->data[j] == target) {
             if (i != NULL) {
-               i = &(ia->data[j]);
+               *i = ia->data[j];
                return INTARR_OK;
             }
          }
