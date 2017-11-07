@@ -144,10 +144,8 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
             i = &(ia->data[j]);
             return INTARR_OK;
          }
-         else {
-            return INTARR_NOTFOUND;
-         }
       }
+      return INTARR_NOTFOUND;
    }
    return INTARR_BADARRAY;
 }
@@ -158,15 +156,17 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
-   int* tempdata = realloc(ia->data,((ia->len)+1)*sizeof(int));
-   if (tempdata != 0) {
-      tempdata[ia->len] = val;
-      ia->data = tempdata;
-      ia->len = (ia->len)+1;
-      return INTARR_OK;
-   }
-   else {
-      return INTARR_BADALLOC;
+   if (ia != 0 && ia->data != 0) {
+      int* tempdata = realloc(ia->data,((ia->len)+1)*sizeof(int));
+      if (tempdata != 0) {
+         tempdata[ia->len] = val;
+         ia->data = tempdata;
+         ia->len = (ia->len)+1;
+         return INTARR_OK;
+      }
+      else {
+         return INTARR_BADALLOC;
+      }
    }
    return INTARR_BADARRAY;
 }
