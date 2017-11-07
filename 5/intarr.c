@@ -139,9 +139,9 @@ intarr_result_t intarr_sort( intarr_t* ia ) {
 // null, return INTARR_BADARRAY.
 intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
    if (ia != 0 && ia->data != 0) {
-      for (int i=0; i<(ia->len); i++) {
-         if ((ia->data[i]) == target) {
-            i = &(ia->data[i]);
+      for (int j=0; j<(ia->len); j++) {
+         if ((ia->data[j]) == target) {
+            i = &(ia->data[j]);
             return INTARR_OK;
          }
          else {
@@ -158,9 +158,10 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
-   int* tempdata = realloc(ia->data,(ia->len)+1);
+   int* tempdata = realloc(ia->data,((ia->len)+1)*sizeof(int));
    if (tempdata != 0) {
       ia->data = tempdata;
+      ia->len = (ia->len)-1;
       return INTARR_OK;
    }
    else {
