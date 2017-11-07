@@ -88,7 +88,7 @@ intarr_result_t intarr_get( const intarr_t* ia,
 // data (we call this a "deep copy"). If unsuccessful (i.e. memory
 // allocation for the copy fails, or ia is null), return a null pointer. 
 intarr_t* intarr_copy( const intarr_t* ia ) {
-   const intarr_t* COPYia;
+   intarr_t* COPYia;
    unsigned int numbytes = (ia->len)*sizeof(int);
    COPYia->data = malloc(numbytes);
    if (COPYia->data != 0 && ia != 0) {
