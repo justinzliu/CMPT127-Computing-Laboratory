@@ -91,7 +91,7 @@ intarr_t* intarr_copy( const intarr_t* ia ) {
    intarr_t* COPYia = malloc(sizeof(intarr_t));
    unsigned int numbytes = (ia->len)*sizeof(int);
    COPYia->data = malloc(numbytes);
-   COPYia->len = ia->len
+   COPYia->len = ia->len;
    if (COPYia->data != 0 && ia != 0) {
       memcpy(COPYia->data,ia->data,numbytes);
       return COPYia;
