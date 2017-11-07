@@ -91,6 +91,7 @@ intarr_t* intarr_copy( const intarr_t* ia ) {
    intarr_t* COPYia = malloc(sizeof(intarr_t));
    unsigned int numbytes = (ia->len)*sizeof(int);
    COPYia->data = malloc(numbytes);
+   COPYia->len = ia->len
    if (COPYia->data != 0 && ia != 0) {
       memcpy(COPYia->data,ia->data,numbytes);
       return COPYia;
@@ -105,6 +106,9 @@ intarr_t* intarr_copy( const intarr_t* ia ) {
 // ia are sorted on return. If ia is null, return
 // INTARR_BADARRAY.
 intarr_result_t intarr_sort( intarr_t* ia ) {
+   if (ia != 0) {
+      
+   }
    return INTARR_BADARRAY;
 }
 
