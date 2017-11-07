@@ -141,8 +141,10 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
    if (ia != 0 && ia->data != 0) {
       for (int j=0; j<(ia->len); j++) {
          if ((ia->data[j]) == target) {
-            i = &(ia->data[j]);
-            return INTARR_OK;
+            if (i != NULL) {
+               i = &(ia->data[j]);
+               return INTARR_OK;
+            }
          }
       }
       return INTARR_NOTFOUND;
@@ -177,8 +179,8 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
    if (ia != 0) {
-      if (ia->data != NULL) {
-         i = &(ia->data[(ia->len)-1]);
+      if (ia->data != NULL && i != NULL) {
+         i = &(ia->data[ia->len]);
          unsigned int numbytes = ((ia->len)-1)*sizeof(int);
          int* tempdata = malloc(numbytes);
          if (tempdata != 0) {
