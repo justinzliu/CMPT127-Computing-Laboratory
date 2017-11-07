@@ -29,7 +29,9 @@ intarr_t* intarr_create( unsigned int len )
    if (ptr != 0) {
       ptr->len = len;
       ptr->data = malloc(len*sizeof(int));
-      return ptr;
+      if (ptr->data != 0) {
+         return ptr;
+      }
    }
    return NULL;
 }
