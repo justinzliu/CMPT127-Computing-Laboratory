@@ -204,7 +204,7 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
    if (ia != 0 && ia->data != 0) {
       if (newlen < ia->len) {
-         ia->data = realloc(ia->data,(ia->len-1)*sizeof(int)));
+         ia->data = realloc(ia->data,(ia->len-1)*sizeof(int));
          if (ia->data != 0) {
             return INTARR_OK;
          }
@@ -233,7 +233,6 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
 intarr_t* intarr_copy_subarray( intarr_t* ia, 
 				unsigned int first, 
 				unsigned int last ) {
-//
    if (ia != 0 && ia->data != 0) {
       if (last > first) {
          unsigned int newlen = last-first+1;
@@ -249,5 +248,5 @@ intarr_t* intarr_copy_subarray( intarr_t* ia,
          }
       } 
    return NULL;
-//
+   }
 }
