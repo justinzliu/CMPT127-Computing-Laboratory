@@ -158,7 +158,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
-   if (ia != 0 || ia->data != 0) {
+   if (ia != 0 && ia->data != 0) {
       realloc(ia->data,((ia->len)+1)*sizeof(int));
       if (ia->data != 0) {
          ia->data[ia->len] = val;
@@ -201,6 +201,24 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
 // INTARR_OK, otherwise return INTARR_BADALLOC. If ia is null, return
 // INTARR_BADARRAY.
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
+   if (ia != 0 && ia->data != 0) {
+      if (newlen < ia->len) {
+         realloc(ia->data,(newlen*sizeof(int)));
+         if (ia->data != 0) {
+            return INTARR_OK;
+         }
+      }
+      else if (newlen > ia->len) {
+         realloc(ia->data, (newlen*sizeof(int)));
+         for (int i=ia->len; i<newlen; i++) {
+            ia->data[i] = 0;
+         }
+         if (ia->data != 0) {
+            return INTARR_OK;
+         }
+      }
+      return INTARR_BADALLOC;
+   }
    return INTARR_BADARRAY;
 }
 
@@ -214,5 +232,17 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
 intarr_t* intarr_copy_subarray( intarr_t* ia, 
 				unsigned int first, 
 				unsigned int last ) {
+/*
+   if (ia != 0 && ia->data != 0) {
+      unsigned int newlen = last-first+1;
+      newdata = intarr_create(newlen); 
+
+      if (subarray != 0) {
+         for (int i=first; i<=last; i++) {
+            subarray[i] = ia->data[i];
+         } 
+      }
+   }
    return NULL;
+*/
 }
