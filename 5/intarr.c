@@ -233,22 +233,21 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
 intarr_t* intarr_copy_subarray( intarr_t* ia, 
 				unsigned int first, 
 				unsigned int last ) {
-/*
+//
    if (ia != 0 && ia->data != 0) {
-      unsigned int newlen = last-first+1;
-      intarr_t* newia = intarr_create(newlen); 
-      if (newia->data != 0) {
-         newia->len = newlen;
-         int j = 0;
-         for (int i=first; i<=last; i++) {
-            new
-            j++;
+      if (last > first) {
+         unsigned int newlen = last-first+1;
+         intarr_t* newia = intarr_create(newlen); 
+         if (newia->data != 0) {
+            newia->len = newlen;
+            int j = 0;
+            for (int i=first; i<=last; i++) {
+               newia->data[j] = ia->data[i];
+               j++;
+            }
+            return newia;
          }
-      }
-
-         } 
-      }
-   }
+      } 
    return NULL;
-*/
+//
 }
