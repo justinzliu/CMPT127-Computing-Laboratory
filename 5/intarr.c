@@ -158,11 +158,10 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ) {
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ) {
-   if (ia != 0 && ia->data != 0) {
-      int* tempdata = realloc(ia->data,((ia->len)+1)*sizeof(int));
-      if (tempdata != 0) {
-         tempdata[ia->len] = val;
-         ia->data = tempdata;
+   if (ia != 0 || ia->data != 0) {
+      realloc(ia->data,((ia->len)+1)*sizeof(int));
+      if (ia->data != 0) {
+         ia->data[ia->len] = val;
          ia->len = (ia->len)+1;
          return INTARR_OK;
       }
@@ -179,13 +178,10 @@ intarr_result_t intarr_push( intarr_t* ia, int val ) {
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
    if (ia != 0) {
-      if (ia->data != NULL && i != NULL) {
-         *i = ia->data[ia->len];
-         unsigned int numbytes = ((ia->len)-1)*sizeof(int);
-         int* tempdata = malloc(numbytes);
-         if (tempdata != 0) {
-            memcpy(tempdata,ia->data,numbytes);
-            ia->data = tempdata;
+      if (ia->data != 0 && i != 0) {
+         *i = ia->data[ia->len-1];
+         realloc(ia->data,((ia->len)-1)*sizeof(int);
+         if ( ia->data != 0) {
             return INTARR_OK;
          }
       }
