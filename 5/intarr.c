@@ -204,10 +204,8 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
    if (ia != 0 && ia->data != 0) {
       if (newlen < ia->len) {
          ia->data = realloc(ia->data,((ia->len)-1)*sizeof(int));
-         ia->len = ia-> len-1;
-         if (ia->data != 0) {
-            return INTARR_OK;
-         }
+         ia->len = ia-> newlen;
+         return INTARR_OK;
       }
       else if (newlen > ia->len) {
          ia->data = realloc(ia->data,newlen*sizeof(int));
