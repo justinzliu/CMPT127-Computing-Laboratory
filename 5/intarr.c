@@ -211,7 +211,7 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ) {
       }
       else if (newlen > ia->len) {
          ia->data = realloc(ia->data,newlen*sizeof(int));
-         ia->len = ia->newlen;
+         ia->len = newlen;
          for (int i=ia->len; i<newlen; i++) {
             ia->data[i] = 0;
          }
@@ -249,4 +249,5 @@ intarr_t* intarr_copy_subarray( intarr_t* ia,
          }
       } 
    return NULL;
+   }
 }
