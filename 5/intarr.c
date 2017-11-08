@@ -181,7 +181,7 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ) {
       if (ia->data != 0 && i != 0) {
          *i = ia->data[ia->len-1];
          ia->data = realloc(ia->data,((ia->len)-1)*sizeof(int));
-         ia->len = len-1;
+         ia->len = ia->len-1;
          if ( ia->data != 0) {
             return INTARR_OK;
          }
