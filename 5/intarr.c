@@ -248,5 +248,4 @@ intarr_t* intarr_copy_subarray( intarr_t* ia,
          }
       } 
    return NULL;
-   }
 }
