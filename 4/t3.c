@@ -1,28 +1,17 @@
 #include <stdio.h>
 #include <stdint.h>
 
-int xsearch ( int x, unsigned int cols ) {
-   if (x < 0) {
-      x = cols - 1; 
+int xysearch ( int xy, unsigned int rowscols ) {
+   if (xy < 0) {
+      xy = rowscols - 1; 
    }
    else {
-      x = x % cols;
+      xy = xy % rowscols;
    }
-   return x;
+   return xy;
 }
 
-int ysearch ( int y, unsigned int rows ) {
-   if (y < 0) {
-      y = rows - 1; 
-   }
-   else {
-      y = y % rows;
-   }
-   return y;
-}
-
-int xsearch ( int x, unsigned int cols );
-int ysearch ( int y, unsigned int rows );
+int xysearch ( int xy, unsigned int rowscols );
 
 void life ( uint8_t array[],
             unsigned int cols,
@@ -40,50 +29,50 @@ void life ( uint8_t array[],
       for (int j=0; j<cols; j++) {
          count = 0; 
          //CHECK RIGHT
-         x = xsearch(j+1,cols);
-         y = ysearch(i,rows);   
+         x = xysearch(j+1,cols);
+         y = xysearch(i,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }
          //CHECK BOTTOM RIGHT
-         x = xsearch(j+1,cols);
-         y = ysearch(i+1,rows);   
+         x = xysearch(j+1,cols);
+         y = xysearch(i+1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }
          //CHECK BOTTOM
-         x = xsearch(j,cols);
-         y = ysearch(i+1,rows);   
+         x = xysearch(j,cols);
+         y = xysearch(i+1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }  
          //CHECK BOTTOM left
-         x = xsearch(j-1,cols);
-         y = ysearch(i+1,rows);   
+         x = xysearch(j-1,cols);
+         y = xysearch(i+1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }          
          //CHECK LEFT
-         x = xsearch(j-1,cols);
-         y = ysearch(i,rows);   
+         x = xysearch(j-1,cols);
+         y = xysearch(i,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }
          //CHECK TOP LEFT
-         x = xsearch(j-1,cols);
-         y = ysearch(i-1,rows);   
+         x = xysearch(j-1,cols);
+         y = xysearch(i-1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }  
          //CHECK TOP
-         x = xsearch(j,cols);
-         y = ysearch(i-1,rows);   
+         x = xysearch(j,cols);
+         y = xysearch(i-1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          } 
          //CHECK TOP RIGHT
-         x = xsearch(j+1,cols);
-         y = ysearch(i-1,rows);   
+         x = xysearch(j+1,cols);
+         y = xysearch(i-1,rows);   
          if (array[x+y*cols] > 0) {
             count+=1;
          }  
