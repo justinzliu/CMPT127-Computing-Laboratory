@@ -55,6 +55,8 @@ element_t* element_create( int i )
 int list_append( list_t* list, int i )
 {
   element_t* el = element_create( i );
+  if( el == NULL )
+    return 1;
   
   if( list->head == NULL )
     list->head = el;
@@ -70,6 +72,8 @@ int list_append( list_t* list, int i )
 int list_prepend( list_t* list, int i )
 {
   element_t* el = element_create( i );
+  if( el == NULL )
+    return 1;
 
   if( list->tail == NULL )
     list->tail = el;
