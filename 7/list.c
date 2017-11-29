@@ -19,7 +19,7 @@
 
 list_t* list_create( void ) {
    list_t* l = malloc( sizeof(list_t) );
-   if( l != 0) {
+   if( l != NULL) {
       l->head = NULL;
       l->tail = NULL;
    }
@@ -27,11 +27,15 @@ list_t* list_create( void ) {
 }
 
 void list_destroy( list_t* list ) {
-   element_t* current = list->head;
-   while( current != NULL ) {
-      element_t* freeme = current;
-      current = current->next;
-      free( freeme );
+   if (list != NULL) {
+      if (list->head != NULL) {
+         element_t* current = list->head;
+         while( current != NULL ) {
+            element_t* freeme = current;
+            current = current->next;
+            free( freeme );
+         }
+      }
    }      
    free( list );
 }
@@ -51,7 +55,6 @@ int list_append( list_t* list, int i ) {
       //empty list
       if ( list->head == NULL ) {
          list->head = el; 
-         list->tail = el;
       } 
       //non-empty list
       else {
@@ -68,7 +71,6 @@ int list_prepend( list_t* list, int i ) {
    if( el != NULL ) {
       //empty list
       if( list->head == NULL ) {
-         list->head = el;
          list->tail = el;
       }
       //non-empty list
@@ -82,19 +84,16 @@ int list_prepend( list_t* list, int i ) {
 }
 
 element_t* list_index( list_t* list, unsigned int i ) {
-  element_t* el = list->head;
-  unsigned int now = 0;
-  
-  while( now < i )
-    {
-      if( el->next == NULL )
-	return NULL;
-
-      now++;
-      el = el->next;
-    }     
-  
-  return el;
+   element_t* target = list->head;
+   unsigned int j = 0;
+   while (j < i) {
+      if (target == NULL) {
+         return NULL;
+      }
+      target = target->next;
+      j++;
+   }     
+  return target;
 }
 
 
