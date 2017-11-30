@@ -26,7 +26,6 @@ int main( int argc, char* argv[] ) {
       return 1;
    }
    free(element1);
-   printf("flag 1\n");
 
    //test list_append
    test = list_append(list, 1);
@@ -62,7 +61,7 @@ int main( int argc, char* argv[] ) {
       printf("append: tail not correctly set\n");
       return 1;   
    }
-   printf("flag 2\n");
+
    //test list_destroy
    list_t* copylist = list;
    element_t* center = copylist->head->next;
@@ -71,7 +70,6 @@ int main( int argc, char* argv[] ) {
        printf( "destroy: destroy failed to free all elements\n" );
        return 1;      
    }
-   printf("flag 3\n");
 
    //test list_prepend
    list = list_create();
@@ -108,7 +106,6 @@ int main( int argc, char* argv[] ) {
       printf("prepend: tail not correctly set\n");
       return 1;   
    }
-   printf("flag 4\n");
    list_destroy(list);
 
    //test list_index
@@ -141,7 +138,11 @@ int main( int argc, char* argv[] ) {
       printf( "index: invalid index border case failed to return NULL\n" );
       return 1;  
    }
-   printf("flag 5\n");
+   element_t* elementatindex5 = list_index(list,5);
+   if (elementatindex5 != NULL) {
+      printf( "index: invalid index border case failed to return NULL\n" );
+      return 1;  
+   }
 
    printf( "all tests passed\n");
    return 0; // tests pass
