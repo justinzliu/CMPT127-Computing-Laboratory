@@ -40,7 +40,7 @@ int main( int argc, char* argv[] ) {
          test = list_append(list, 3);
          if (test == 0) {
             if (list->head == NULL || list->head->next == NULL || list->head->next->next == NULL || list->head->val != 1 || list->head->next->val != 2 || list->head->next->next->val != 3) {
-               printf( "append: tail not correctly set\n" );
+               printf( "append: linked list not correctly set\n" );
                return 1;
             }      
          }
@@ -57,6 +57,10 @@ int main( int argc, char* argv[] ) {
    else {
       printf("append: returned 1, failed to malloc\n");
       return 1;
+   }
+   if (list->tail == NULL || list->tail->val != 3) {
+      printf("append: tail not correctly set\n");
+      return 1;   
    }
    printf("flag 2\n");
    //test list_destroy
@@ -74,7 +78,7 @@ int main( int argc, char* argv[] ) {
    test = list_prepend(list, 3);
    if (test == 0) {
       if (list->head->val != 3) {
-         printf( "append: empty list border case, failed to correctly set new head\n" );
+         printf( "prepend: empty list border case, failed to correctly set new head\n" );
          return 1; 
       }
       test = list_prepend(list, 2);
@@ -82,30 +86,34 @@ int main( int argc, char* argv[] ) {
          test = list_prepend(list, 1);
          if (test == 0) {
             if (list->head == NULL || list->head->next == NULL || list->head->next->next == NULL || list->head->val != 1 || list->head->next->val != 2 || list->head->next->next->val != 3) {
-               printf( "append: tail not correctly set\n" );
+               printf( "prepend: tail not correctly set\n" );
                return 1;
             }      
          }
          else {
-            printf("append: returned 1, failed to malloc\n");
+            printf("prepend: returned 1, failed to malloc\n");
             return 1;
          }
       }
       else {
-         printf("append: returned 1, failed to malloc\n");
+         printf("prepend: returned 1, failed to malloc\n");
          return 1;
       }
    }
    else {
-      printf("append: returned 1, failed to malloc\n");
+      printf("prepend: returned 1, failed to malloc\n");
       return 1;
+   }
+   if (list->tail == NULL || list->tail->val != 3) {
+      printf("prepend: tail not correctly set\n");
+      return 1;   
    }
    printf("flag 4\n");
    list_destroy(list);
 
    //test list_index
    list = list_create();
-   element_t* elementatindexempty = list_index(list,0);
+   element_t* elementatindexempty = list_index(list,3);
    if (elementatindexempty != NULL) {
       printf( "index: empty list border case failed to return NULL\n" );
       return 1;
