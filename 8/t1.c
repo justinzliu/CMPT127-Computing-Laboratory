@@ -14,6 +14,7 @@ void point_array_init( point_array_t* pa ) {
 void point_array_reset( point_array_t* pa ) {
    if (pa != NULL && pa->points != NULL) {
       free(pa->points);
+      pa->len = 0;
    }
    return;
 }
@@ -30,7 +31,7 @@ int point_array_append( point_array_t* pa, point_t* p ) {
       }
       if (pa->points != NULL) {
          pa->points[pa->len] = *p;
-         pan->len = pa->len+1;
+         pa->len = pa->len+1;
          return 0;
       }
    }
