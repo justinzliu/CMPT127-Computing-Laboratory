@@ -26,7 +26,7 @@ void point_array_reset( point_array_t* pa ) {
 // Append a point to the end of an array. If successful, return 0,
 // else return 1;
 int point_array_append( point_array_t* pa, point_t* p ) {
-   if (pa != NULL) {
+   if (pa != NULL && p != NULL) {
       if (pa->len == pa->reserved) {
          pa->points = realloc(pa->points,2*sizeof(point_t)*(pa->reserved+1));
          if (pa->points != NULL) {
@@ -48,7 +48,7 @@ int point_array_append( point_array_t* pa, point_t* p ) {
 // Remove the point at index i from the array, reducing the size of
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ) {
-   if (pa != NULL && pa->points != NULL && i < pa->reserved && pa->len > 0) {
+   if (pa != NULL && pa->points != NULL && i < pa->len && pa->len > 0) {
       pa->points[i] = pa->points[pa->len-1];
       pa->len = pa->len-1;
       return 0;
