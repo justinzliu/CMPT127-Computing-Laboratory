@@ -35,8 +35,8 @@ intarr_t* intarr_load_binary( const char* filename ) {
    if (f != NULL) {
       intarr_t* ia = malloc(sizeof(intarr_t));
       if (ia != NULL) {
-         fread(ia->len,sizeof(unsigned int),1,f);
-         intarr_t* ia->data = malloc(sizeof(int)*ia->len);
+         fread(&(ia->len),sizeof(unsigned int),1,f);
+         ia->data = malloc(sizeof(int)*ia->len);
          if (ia->data != NULL) {
             if (fread(&(ia->data),sizeof(int),ia->len,f) == ia->len) {
                fclose(f);
