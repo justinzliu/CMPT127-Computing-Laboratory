@@ -28,9 +28,9 @@ int point_array_append( point_array_t* pa, point_t* p ) {
    if (pa != NULL) {
       pa->points = realloc(pa->points,sizeof(point_t)*(pa->len+1));
       if (pa->points != NULL) {
-         pa->points[pa->len]->x = p->x;
-         pa->points[pa->len]->y = p->y;
-         pa->points[pa->len]->z = p->z;
+         pa->points[pa->len].x = p->x;
+         pa->points[pa->len].y = p->y;
+         pa->points[pa->len].z = p->z;
          pa->len = pa->len+1;
          return 0;
       }
