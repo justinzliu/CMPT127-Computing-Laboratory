@@ -14,8 +14,9 @@ int intarr_save_binary( intarr_t* ia, const char* filename ) {
    if (ia != NULL || filename != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
-         fwrite(&(ia->len),sizeof(unsigned int),1,f);
-         if (fwrite(ia->data,sizeof(int),ia->len,f) == ia->len) {
+         int len = ia->len;
+         fwrite(&len,sizeof(int),1,f);
+         if (fwrite(ia->data,sizeof(int),len,f) == len) {
             fclose(f);
             return 0;
          }
@@ -36,7 +37,7 @@ intarr_t* intarr_load_binary( const char* filename ) {
       if (f != NULL) {
          intarr_t* ia = malloc(sizeof(intarr_t));
          if (ia != NULL) {
-            fread(&(ia->len),sizeof(unsigned int),1,f);
+            fread(&(ia->len),sizeof(int),1,f);
             ia->data = malloc(sizeof(int)*ia->len);
             if (ia->data != NULL) {
                if (fread(&(ia->data),sizeof(int),ia->len,f) == ia->len) {
