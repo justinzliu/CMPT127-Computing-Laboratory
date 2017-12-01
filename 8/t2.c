@@ -28,7 +28,7 @@ void point_array_reset( point_array_t* pa ) {
 int point_array_append( point_array_t* pa, point_t* p ) {
    if (pa != NULL) {
       if (pa->len == pa->reserved) {
-         realloc(pa->points,2*sizeof(point_t)*(pa->reserved+1));
+         pa->points = realloc(pa->points,2*sizeof(point_t)*(pa->reserved+1));
          if (pa->points != NULL) {
             pa->points[pa->len] = *p;
             pa->len = pa->len+1;
@@ -39,6 +39,7 @@ int point_array_append( point_array_t* pa, point_t* p ) {
       else {
          pa->points[pa->len] = *p;
          pa->len = pa->len+1;
+         return 0;
       }
    }
    return 1;
