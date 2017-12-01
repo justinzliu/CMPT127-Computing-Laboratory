@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "intarr.h"
 
 /* LAB 6 TASK 1 */
@@ -14,12 +14,10 @@ int intarr_save_binary( intarr_t* ia, const char* filename ) {
    if (ia != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
-         if (ia->len != NULL) {
-            fwrite(ia->len,sizeof(unsigned int),1,f);
-            if (fwrite(ia->data,sizeof(int),ia->len,f) == ia->len) {
-               fclose(f);
-               return 0;
-            }
+         fwrite(&(ia->len),sizeof(unsigned int),1,f);
+         if (fwrite(ia->data,sizeof(int),ia->len,f) == ia->len) {
+            fclose(f);
+            return 0;
          }
       }
       fclose(f);
@@ -40,7 +38,7 @@ intarr_t* intarr_load_binary( const char* filename ) {
          fread(ia->len,sizeof(unsigned int),1,f);
          intarr_t* ia->data = malloc(sizeof(int)*ia->len);
          if (ia->data != NULL) {
-            if (fread(ia->data,sizeof(int),ia->len,f) == ia->len) {
+            if (fread(&(ia->data),sizeof(int),ia->len,f) == ia->len) {
                fclose(f);
                return ia;
             }
