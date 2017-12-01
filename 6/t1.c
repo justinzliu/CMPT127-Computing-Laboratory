@@ -40,9 +40,10 @@ intarr_t* intarr_load_binary( const char* filename ) {
             fread(&(ia->len),sizeof(int),1,f);
             ia->data = malloc(sizeof(int)*ia->len);
             if (ia->data != NULL) {
-                  fread(&(ia->data),sizeof(int),ia->len,f)
+                  fread(&(ia->data),sizeof(int),ia->len,f) == ia->len;
                   fclose(f);
                   return ia;
+               
             }
          }
       fclose(f); 
