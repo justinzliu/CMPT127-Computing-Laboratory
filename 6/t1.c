@@ -11,7 +11,7 @@
   length 0 should produce an output file containing an empty array.
 */
 int intarr_save_binary( intarr_t* ia, const char* filename ) {
-   if (ia != NULL || filename != NULL || ia->data != NULL) {
+   if (ia != NULL && filename != NULL && ia->data != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
          int len = ia->len;
