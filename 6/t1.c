@@ -48,4 +48,5 @@ intarr_t* intarr_load_binary( const char* filename ) {
       fclose(f); 
       }
    return NULL;
+   }
 }
