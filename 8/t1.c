@@ -3,11 +3,11 @@
 
 // Safely initalize an empty array structure.
 void point_array_init( point_array_t* pa ) {
-   //if (pa != NULL) {
+   if (pa != NULL) {
       pa->points = NULL;
       pa->len = 0;
       pa->reserved = 0;
-   //}
+   }
    return;
 }
 
@@ -17,7 +17,7 @@ void point_array_reset( point_array_t* pa ) {
    if (pa != NULL && pa->points != NULL) {
       free(pa->points);
       pa->len = 0;
-      pa->points = 0;
+      pa->points = NULL;
    }
    return;
 }
@@ -26,10 +26,12 @@ void point_array_reset( point_array_t* pa ) {
 // else return 1;
 int point_array_append( point_array_t* pa, point_t* p ) {
    if (pa != NULL) {
-      pa->len = pa->len+1;
-      pa->points = realloc(pa->points,sizeof(point_t)*(pa->len));
+      pa->points = realloc(pa->points,sizeof(point_t)*(pa->len+1));
       if (pa->points != NULL) {
-         pa->points[pa->len] = *p;
+         pa->points[pa->len]->x = p->x;
+         pa->points[pa->len]->y = p->y;
+         pa->points[pa->len]->z = p->z;
+         pa->len = pa->len+1;
          return 0;
       }
    }
