@@ -28,7 +28,7 @@ int point_array_append( point_array_t* pa, point_t* p ) {
    if (pa != NULL) {
       pa->points = realloc(pa->points,sizeof(point_t)*(pa->len+1));
       if (pa->points != NULL) {
-         pa->points[pa->len] = p;
+         pa->points[pa->len] = *p;
          /*
          pa->points[pa->len].x = p->x;
          pa->points[pa->len].y = p->y;
@@ -45,7 +45,7 @@ int point_array_append( point_array_t* pa, point_t* p ) {
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ) {
    if (pa != NULL && pa->points != NULL && i < pa->len && pa->len > 0) {
-      pa->points[i] = pa->points[len-1];
+      pa->points[i] = pa->points[pa->len-1];
       /*
       pa->points[i].x = pa->points[pa->len-1].x;
       pa->points[i].y = pa->points[pa->len-1].y;
