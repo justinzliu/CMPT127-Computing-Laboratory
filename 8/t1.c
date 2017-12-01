@@ -41,16 +41,14 @@ int point_array_append( point_array_t* pa, point_t* p ) {
 // Remove the point at index i from the array, reducing the size of
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ) {
-   if (pa != NULL && pa->points != NULL && i < pa->len) {
+   if (pa != NULL && pa->points != NULL && i < pa->len && pa->len > 0) {
       pa->points[i].x = pa->points[pa->len-1].x;
       pa->points[i].y = pa->points[pa->len-1].y;
       pa->points[i].z = pa->points[pa->len-1].z;
-      if (pa->len > 0) { 
-         pa->len = pa->len-1;
-         pa->points = realloc(pa->points,sizeof(point_t)*(pa->len));
-         if (pa->points != NULL) {
-            return 0;
-         }
+      pa->len = pa->len-1;
+      pa->points = realloc(pa->points,sizeof(point_t)*(pa->len));
+      if (pa->points != NULL) {
+         return 0;
       }
    }
    return 1;
