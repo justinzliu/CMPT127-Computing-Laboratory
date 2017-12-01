@@ -4,7 +4,9 @@
 // Safely initalize an empty array structure.
 void point_array_init( point_array_t* pa ) {
    if (pa != NULL) {
-      pa->points = malloc(sizeof(point_t)*pa->len);
+      pa->points = NULL;
+      pa->len = 0;
+      pa->reserved = 0;
    }
    return;
 }
@@ -13,7 +15,10 @@ void point_array_init( point_array_t* pa ) {
 // necessary.
 void point_array_reset( point_array_t* pa ) {
    if (pa != NULL && pa->points != NULL) {
-         free(pa->points);
+      free(pa->points);
+      pa->len = 0;
+      pa->reserved = 0;
+      pa->points = NULL;
    }
    return;
 }
@@ -21,15 +26,19 @@ void point_array_reset( point_array_t* pa ) {
 // Append a point to the end of an array. If successful, return 0,
 // else return 1;
 int point_array_append( point_array_t* pa, point_t* p ) {
-   if (pa != NULL && pa->points != NULL) {
-      if (pa->reserved != pa->len*2) {
-         pa->reserved = pa->len*2;
-         pa->points = realloc(pa->points,sizeof(point_t)*pa->reserved);
+   if (pa != NULL && p != NULL) {
+      if (pa->len == pa->reserved) {
+         realloc(pa->points,2*sizeof(point_t)*(pa->reserved+1));
+         if (pa->points != NULL) {
+            pa->points[pa->len] = *p;
+            pa->len = pa->len+1;
+            pa->reserved = (pa->reserved+1)*2;
+            return 0;
+         }
       }
-      if (pa->points != NULL) {
+      else {
          pa->points[pa->len] = *p;
          pa->len = pa->len+1;
-         return 0;
       }
    }
    return 1;
@@ -38,11 +47,9 @@ int point_array_append( point_array_t* pa, point_t* p ) {
 // Remove the point at index i from the array, reducing the size of
 // the array by one. The order of points in the array may change.
 int point_array_remove( point_array_t* pa, unsigned int i ) {
-   if (pa != NULL && pa->points != NULL) {
+   if (pa != NULL && pa->points != NULL && i < pa->reserved && pa->len > 0) {
       pa->points[i] = pa->points[pa->len-1];
-      pa->points = realloc(pa->points,sizeof(point_t)*(pa->reserved-1));
       pa->len = pa->len-1;
-      pa->reserved = pa->reserved-2;
       return 0;
    }
    return 1;
