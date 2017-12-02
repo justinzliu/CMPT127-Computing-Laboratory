@@ -14,9 +14,15 @@ int intarr_save_binary( intarr_t* ia, const char* filename ) {
    if (ia != NULL && filename != NULL && ia->data != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
-         int len = ia->len;
-         fwrite(&len,sizeof(int),1,f);
-         if (fwrite(ia->data,sizeof(int),len,f) == len) {
+         if (ia->len > 0) {
+            int len = ia->len;
+            fwrite(&len,sizeof(int),1,f);
+            if (fwrite(ia->data,sizeof(int),len,f) == len) {
+               fclose(f);
+               return 0;
+            }
+         }
+         else {
             fclose(f);
             return 0;
          }
