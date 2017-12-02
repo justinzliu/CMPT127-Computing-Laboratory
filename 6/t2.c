@@ -31,13 +31,11 @@ int intarr_save_json( intarr_t* ia, const char* filename ) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
          if (ia->len > 0) {
-            int len = ia->len;
-            fprintf(f, "%d\n", len);
             fprintf(f, "[ ");
-            for (int i=0; i<len-1; i++) {
+            for (int i=0; i<ia->len-1; i++) {
                fprintf(f, "%d, ", ia->data[i]);
             }
-            fprintf(f, "%d", ia->data[len-1]);
+            fprintf(f, "%d", ia->data[ia->len-1]);
             fprintf(f, " ]");
             fclose(f);
             return 0;
@@ -64,10 +62,17 @@ intarr_t* intarr_load_json( const char* filename ) {
       if (f != NULL) {
          intarr_t* ia = malloc(sizeof(intarr_t));
          if (ia != NULL) {
-            fscanf(f,"%d", &ia->len);
+            unsigned int len = 0;
+            int num;
+            while(fscanf(f,"%*c %d", &num) == 1) {
+               len++;
+            }
+            fseek(f,0,SEEK_SET);
+            printf("len is: %d\n", len);
+            ia->len = len;
             ia->data = malloc(sizeof(int)*ia->len);
             if (ia->data != NULL) {
-               fscanf(f,"%*c %*c %d", &ia->data[0]);
+               fscanf(f,"%*c %d", &ia->data[0]);
                for (int i=1; i<ia->len; i++) {
                   fscanf(f,"%*c %d", &ia->data[i]);
                }
