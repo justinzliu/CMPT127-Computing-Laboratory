@@ -67,7 +67,8 @@ intarr_t* intarr_load_json( const char* filename ) {
             fscanf(f,"%d", &ia->len);
             ia->data = malloc(sizeof(int)*ia->len);
             if (ia->data != NULL) {
-               for (int i=0; i<ia->len; i++) {
+               fscanf(f,"%*c %*c %d", &ia->data[0]);
+               for (int i=1; i<ia->len; i++) {
                   fscanf(f,"%*c %d", &ia->data[i]);
                }
                fclose(f);
