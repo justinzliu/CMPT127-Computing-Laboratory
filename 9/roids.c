@@ -440,7 +440,10 @@ void key_up( unsigned char key, int x, int y )
      if key is 'm', set ship.thrust to zero.
   */
    switch(key) {
-      case 'z' || 'x':
+      case 'z':
+         ship.da = 0;
+         break;
+      case 'x':
          ship.da = 0;
          break;
       case 'm':
