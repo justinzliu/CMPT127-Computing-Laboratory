@@ -28,7 +28,7 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
    if (pixels != NULL) {
       cols = width;
       rows = height;
-      for (int i=0; i<width*height; i++) {
+      for (unsigned int i=0; i<width*height; i++) {
          pixels[i] = fillcolor;
       }
       return 0;
@@ -45,7 +45,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
 
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
    if (pixels != NULL && x < cols && y < rows) {
-      *colorp = pixel[x+y*cols];
+      *colorp = pixels[x+y*cols];
       return 0;
    }
    return 1;
