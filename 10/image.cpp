@@ -1,3 +1,9 @@
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h> 
+#include <assert.h>
+#include <stdio.h>
+#include <math.h>
 #include "image.hpp"
 
 Image::Image() {
