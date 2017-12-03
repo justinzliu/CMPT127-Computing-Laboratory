@@ -13,6 +13,8 @@ Image::Image() {
 }
 
 Image::~Image() {
+   cols = 0;
+   rows = 0;
    if (pixels != NULL) {
       delete [] pixels;
    }
