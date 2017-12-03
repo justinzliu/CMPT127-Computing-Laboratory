@@ -24,7 +24,8 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
    if (pixels != NULL) {
       delete [] pixels;
    }
-   uint8_t* pixels = new uint8_t(width*height);
+   //uint8_t* pixels = new uint8_t(width*height);
+   uint8_t pixels[width*height];
    if (pixels != NULL) {
       cols = width;
       rows = height;
