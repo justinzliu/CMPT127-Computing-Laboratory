@@ -1,10 +1,8 @@
 #include <stdlib.h>
 #include <stdint.h>
-#include <string.h> 
-#include <assert.h>
 #include <stdio.h>
-#include <math.h>
 #include "image.hpp"
+using namespace std;
 
 Image::Image() {
    cols = 0;
