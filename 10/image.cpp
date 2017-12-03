@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h> 
+#include <assert.h>
 #include <stdio.h>
+#include <math.h>
 #include "image.hpp"
 
 Image::Image() {
@@ -17,32 +20,32 @@ Image::~Image() {
    }
 }
 
-int resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
-   if (Image->pixels != NULL) {
-      delete [] Image->pixels;
+int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
+   if (pixels != NULL) {
+      delete [] pixels;
    }
    uint8_t* pixels = new uint8_t(width*height);
-   if (Image->pixels != NULL) {
-      Image->cols = width;
-      Image->rows = height;
+   if (pixels != NULL) {
+      cols = width;
+      rows = height;
       for (int i=0; i<width*height; i++) {
-         Image->pixels[i] = fillcolor;
+         pixels[i] = fillcolor;
       }
       return 0;
    }
    return 1; 
 }
-int set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
-   if (Image->pixels != NULL && x < Image->cols && Image->y < rows) {
-      Image->pixels[x+y*cols] = color;
+int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
+   if (pixels != NULL && x < cols && y < rows) {
+      pixels[x+y*cols] = color;
       return 0;
    }
    return 1;
 }
 
-int get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
-   if (Image->pixels != NULL && x < Image->cols && Image->y < rows) {
-      *colorp = Image->pixel[x+y*cols];
+int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
+   if (pixels != NULL && x < cols && y < rows) {
+      *colorp = pixel[x+y*cols];
       return 0;
    }
    return 1;
