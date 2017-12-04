@@ -442,6 +442,34 @@ void roid_draw( const roid_t* roid )
 		  roid->x+roid->width/2.0, roid->y+roid->height/2,
 		  roid->color );
 
+  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0), 
+		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2),
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0)-1, roid->y-(roid->height/2.0), 
+		  roid->x+(roid->width/2.0)-1, roid->y+(roid->height/2),
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0), roid->y-(roid->height/2.0)+1, 
+		  roid->x+(roid->width/2.0), roid->y+(roid->height/2)+1,
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0), roid->y-(roid->height/2.0)-1, 
+		  roid->x+(roid->width/2.0), roid->y+(roid->height/2)-1,
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0)+1, 
+		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2)+1,
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0)-1, 
+		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2)-1,
+		  roid->color );
+
+  draw_rectangle( roid->x-(roid->width/2.0)-1, roid->y-(roid->height/2.0)-1, 
+		  roid->x+(roid->width/2.0)-1, roid->y+(roid->height/2)-1,
+		  roid->color );
+
   /* TASK 4 */
   /* TODO: 
      more drawing so that the roids appear to wrap around the
@@ -472,13 +500,30 @@ int shot_roid_hit( const shot_t* shot, const roid_t* roid )
   /* TASK 5 */
   /* TODO: modify this code so it takes into account the toroidal
      shape of the world.
-   */
+   
   
   return( shot->x >= roid->x - roid->width/2 &&
 	  shot->x <= roid->x + roid->width/2 &&
 	  shot->y >= roid->y - roid->height/2 &&
 	  shot->y <= roid->y + roid->height/2 );
+*/
 
+int hit = 0;
+for (int i=-1; i<=1; i++) {
+   if ( (shot->x >= roid->x+i - roid->width/2) == 1 && (shot->x <= roid->x+i + roid->width/2) == 1) {
+         hit++;
+   }
+   for (int j=-1; j<=1; j++) {
+      if ( (shot->y >= roid->y+j - roid->height/2) == 1 && (shot->y <= roid->y+j + roid->height/2) == 1) {  
+         hit++;
+         if (hit == 2) {
+            return 1;
+         }
+         hit = 0; 
+      }
+   }
+}
+return 0;
 }
 
 /* Modify roid speed by applying a force with magnitude @SHOT_THRUST
