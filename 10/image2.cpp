@@ -85,10 +85,11 @@ int load( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename,"r");
       if (f != NULL) {
-         fread(&cols,sizeof(uint8_t*),1,f);
-         fread(&rows,sizeof(uint8_t*),1,f);
-         unsigned len = cols*rows;
-         if (Image::resize(cols,rows,0) == 0) {
+         Image* newimage= new Image();
+         fread(&(newimage->cols),sizeof(uint8_t*),1,f);
+         fread(&(newimage->rows),sizeof(uint8_t*),1,f);
+         unsigned len = (newimage->cols)*(newimage->rows);
+         if (newimage->resize(cols,rows,0) == 0) {
             for (int i=0; i<len; i++) {
                fread(pixels,sizeof(uint8_t*),ia->len,f);
             }
