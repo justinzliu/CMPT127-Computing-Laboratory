@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "image.hpp"
-using namespace std;
 
 Image::Image() {
    cols = 0;
@@ -45,7 +44,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
 }
 
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
-   if (pixels != NULL && x < cols && y < rows) {
+   if (pixels != NULL && colorp != NULL && x < cols && y < rows) {
       *colorp = pixels[x+(y*cols)];
       return 0;
    }
