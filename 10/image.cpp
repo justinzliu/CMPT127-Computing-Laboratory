@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "image.hpp"
+using namespace std;
 
 Image::Image() {
    cols = 0;
