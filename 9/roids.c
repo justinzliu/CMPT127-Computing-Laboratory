@@ -140,49 +140,49 @@ void ship_draw( const ship_t* ship )
 		 shipcolor );
   
   //Right Boundary Ship
-      draw_triangle( ship->x+1 - dx, ship->y - dy,
+      draw_triangle( ship->x+1 + dx, ship->y + dy,
 		     ship->x+1 + lx, ship->y + ly,
 		     ship->x+1 + rx, ship->y + ry,
 		     shipcolor );                 
   
   //Left Boundary Ship
-      draw_triangle( ship->x-1 - dx, ship->y - dy,
+      draw_triangle( ship->x-1 + dx, ship->y + dy,
 		     ship->x-1 + lx, ship->y + ly,
 		     ship->x-1 + rx, ship->y + ry,
 		     shipcolor );                 
 
   //Right Top Boundary Ship
-      draw_triangle( ship->x+1 - dx, ship->y+1 - dy,
+      draw_triangle( ship->x+1 + dx, ship->y+1 + dy,
 		     ship->x+1 + lx, ship->y+1 + ly,
 		     ship->x+1 + rx, ship->y+1 + ry,
 		     shipcolor );                 
 
   //Left Bottom Boundary Ship
-      draw_triangle( ship->x-1 - dx, ship->y-1 - dy,
+      draw_triangle( ship->x-1 + dx, ship->y-1 + dy,
 		     ship->x-1 + lx, ship->y-1 + ly,
 		     ship->x-1 + rx, ship->y-1 + ry,
 		     shipcolor );                 
 
   //Top Boundary Ship
-      draw_triangle( ship->x - dx, ship->y+1 - dy,
+      draw_triangle( ship->x + dx, ship->y+1 + dy,
 		     ship->x + lx, ship->y+1 + ly,
 		     ship->x + rx, ship->y+1 + ry,
 		     shipcolor );                 
 
   //Bottom Boundary Ship
-      draw_triangle( ship->x - dx, ship->y-1 - dy,
+      draw_triangle( ship->x + dx, ship->y-1 + dy,
 		     ship->x + lx, ship->y-1 + ly,
 		     ship->x + rx, ship->y-1 + ry,
 		     shipcolor );    
              
   //Right Bottom Boundary Ship
-      draw_triangle( ship->x+1 - dx, ship->y-1 - dy,
+      draw_triangle( ship->x+1 + dx, ship->y-1 + dy,
 		     ship->x+1 + lx, ship->y-1 + ly,
 		     ship->x+1 + rx, ship->y-1 + ry,
 		     shipcolor );                 
 
   //Left Top Boundary Ship
-      draw_triangle( ship->x-1 - dx, ship->y+1 - dy,
+      draw_triangle( ship->x-1 + dx, ship->y+1 + dy,
 		     ship->x-1 + lx, ship->y+1 + ly,
 		     ship->x-1 + rx, ship->y+1 + ry,
 		     shipcolor );                 
