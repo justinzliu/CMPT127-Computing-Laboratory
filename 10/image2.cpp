@@ -58,17 +58,17 @@ int Image::save( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
-         int len = cols*rows;
-         fwrite(cols,sizeof(uint8_t*),1,f);
-         fwrite(rows,sizeof(uint8_t*),1,f);
+         unsigned int len = cols*rows;
          if (len > 0) {
+            fwrite(cols,sizeof(uint8_t*),1,f);
+            fwrite(rows,sizeof(uint8_t*),1,f);
             fwrite(pixels,sizeof(uint8_t*),len,f);
             if (fwrite(pixels,sizeof(uint8_t*),len,f) == len) {
                fclose(f);
                return 0;
             }
          }
-         else {
+         else if (len == 0) {
             fclose(f);
             return 0;
          }
@@ -85,19 +85,19 @@ int Image::load( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename,"r");
       if (f != NULL) {
-         pixels* newpixel= new pixel();
-         fread(&(newimage->cols),sizeof(uint8_t*),1,f);
-         fread(&(newimage->rows),sizeof(uint8_t*),1,f);
-         unsigned len = (newimage->cols)*(newimage->rows);
-         if (newimage->resize(newimage->cols,newimage->rows,0) == 0) {
+         fread(&cols,sizeof(uint8_t*),1,f);
+         fread(&rows,sizeof(uint8_t*),1,f);
+         unsigned int len = cols*rows;
+         if (resize(cols,rows,0) == 0) {
             for (int i=0; i<len; i++) {
-               fread(newimage->pixels,sizeof(uint8_t*),len,filename);
-            }
-            fclose(f);
-            return 0;
+               if (fread(pixels,sizeof(uint8_t*),len,filename) == len) {
+                  fclose(f);
+                  return 0;
+               }
+            }   
          }
-      }
       fclose(f);
+      }
    }
    return 1;
 }
