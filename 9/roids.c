@@ -199,12 +199,14 @@ void ship_draw( const ship_t* ship )
 */
 
 //Thruster Draw
-   for (int i=-1; i<1; i++) {
-      for (int j=-1; j<1; j++) {
-         draw_triangle( ship->x+i - dx, ship->y+j - dy,
-		        ship->x+i + lx, ship->y+j + ly,
-		        ship->x+i + rx, ship->y+j + ry,
-		        thrustcolor );  
+   if (ship->thrust) {
+      for (int i=-1; i<1; i++) {
+         for (int j=-1; j<1; j++) {
+            draw_triangle( ship->x+i - dx, ship->y+j - dy,
+ 	                   ship->x+i + lx, ship->y+j + ly,
+	                   ship->x+i + rx, ship->y+j + ry,
+	                   thrustcolor );  
+         }
       }
    }
 
