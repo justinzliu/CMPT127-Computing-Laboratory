@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include "image2.hpp"
-//  
+  
 Image::Image() {
    cols = 0;
    rows = 0;
