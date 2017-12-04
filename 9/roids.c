@@ -134,8 +134,8 @@ void ship_draw( const ship_t* ship )
   float ry = ship->size/2.0 * sin( fmod( ship->a - 2.2, 2.0*M_PI) );
 
 //Ship Draw
-   for (int i=-1; i<1; i++) {
-      for (int j=-1; j<1; j++) {
+   for (int i=-1; i<=1; i++) {
+      for (int j=-1; j<=1; j++) {
          draw_triangle( ship->x+i + dx, ship->y+j + dy,
                         ship->x+i + lx, ship->y+j + ly,
                         ship->x+i + rx, ship->y+j + ry,
@@ -200,8 +200,8 @@ void ship_draw( const ship_t* ship )
 
 //Thruster Draw
    if (ship->thrust) {
-      for (int i=-1; i<1; i++) {
-         for (int j=-1; j<1; j++) {
+      for (int i=-1; i<=1; i++) {
+         for (int j=-1; j<=1; j++) {
             draw_triangle( ship->x+i - dx, ship->y+j - dy,
  	                   ship->x+i + lx, ship->y+j + ly,
 	                   ship->x+i + rx, ship->y+j + ry,
@@ -497,8 +497,8 @@ void roid_draw( const roid_t* roid )
 		  roid->color );
 */
 
-   for (int i=-1; i<1; i++) {
-      for (int j=-1; j<1; j++) {
+   for (int i=-1; i<=1; i++) {
+      for (int j=-1; j<=1; j++) {
          draw_rectangle( roid->x+i-roid->width/2.0, roid->y+j-roid->height/2.0, 
 	                 roid->x+i+roid->width/2.0, roid->y+j+roid->height/2,
 	                 roid->color );      
