@@ -133,16 +133,137 @@ void ship_draw( const ship_t* ship )
   float rx = ship->size/2.0 * cos( fmod( ship->a - 2.2, 2.0*M_PI) );
   float ry = ship->size/2.0 * sin( fmod( ship->a - 2.2, 2.0*M_PI) );
   
+  //Actual Position Ship
   draw_triangle( ship->x + dx, ship->y + dy,
 		 ship->x + lx, ship->y + ly,
 		 ship->x + rx, ship->y + ry,
 		 shipcolor );
+  
+  //Right Boundary Ship
+      draw_triangle( ship->x+1 - dx, ship->y - dy,
+		     ship->x+1 + lx, ship->y + ly,
+		     ship->x+1 + rx, ship->y + ry,
+		     shipcolor );                 
+  
+  //Left Boundary Ship
+      draw_triangle( ship->x-1 - dx, ship->y - dy,
+		     ship->x-1 + lx, ship->y + ly,
+		     ship->x-1 + rx, ship->y + ry,
+		     shipcolor );                 
 
+  //Right Top Boundary Ship
+      draw_triangle( ship->x+1 - dx, ship->y+1 - dy,
+		     ship->x+1 + lx, ship->y+1 + ly,
+		     ship->x+1 + rx, ship->y+1 + ry,
+		     shipcolor );                 
+
+  //Left Bottom Boundary Ship
+      draw_triangle( ship->x-1 - dx, ship->y-1 - dy,
+		     ship->x-1 + lx, ship->y-1 + ly,
+		     ship->x-1 + rx, ship->y-1 + ry,
+		     shipcolor );                 
+
+  //Top Boundary Ship
+      draw_triangle( ship->x - dx, ship->y+1 - dy,
+		     ship->x + lx, ship->y+1 + ly,
+		     ship->x + rx, ship->y+1 + ry,
+		     shipcolor );                 
+
+  //Bottom Boundary Ship
+      draw_triangle( ship->x - dx, ship->y-1 - dy,
+		     ship->x + lx, ship->y-1 + ly,
+		     ship->x + rx, ship->y-1 + ry,
+		     shipcolor );    
+             
+  //Right Bottom Boundary Ship
+      draw_triangle( ship->x+1 - dx, ship->y-1 - dy,
+		     ship->x+1 + lx, ship->y-1 + ly,
+		     ship->x+1 + rx, ship->y-1 + ry,
+		     shipcolor );                 
+
+  //Left Top Boundary Ship
+      draw_triangle( ship->x-1 - dx, ship->y+1 - dy,
+		     ship->x-1 + lx, ship->y+1 + ly,
+		     ship->x-1 + rx, ship->y+1 + ry,
+		     shipcolor );                 
+
+  //Actual Position Thruster
   if( ship->thrust )
     {
       draw_triangle( ship->x - dx, ship->y - dy,
 		     ship->x + lx, ship->y + ly,
 		     ship->x + rx, ship->y + ry,
+		     thrustcolor );                 
+    }
+  
+  //Right Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x+1 - dx, ship->y - dy,
+		     ship->x+1 + lx, ship->y + ly,
+		     ship->x+1 + rx, ship->y + ry,
+		     thrustcolor );                 
+    }
+  
+  //Left Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x-1 - dx, ship->y - dy,
+		     ship->x-1 + lx, ship->y + ly,
+		     ship->x-1 + rx, ship->y + ry,
+		     thrustcolor );                 
+    }
+
+  //Right Top Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x+1 - dx, ship->y+1 - dy,
+		     ship->x+1 + lx, ship->y+1 + ly,
+		     ship->x+1 + rx, ship->y+1 + ry,
+		     thrustcolor );                 
+    }
+
+  //Left Bottom Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x-1 - dx, ship->y-1 - dy,
+		     ship->x-1 + lx, ship->y-1 + ly,
+		     ship->x-1 + rx, ship->y-1 + ry,
+		     thrustcolor );                 
+    }
+
+  //Top Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x - dx, ship->y+1 - dy,
+		     ship->x + lx, ship->y+1 + ly,
+		     ship->x + rx, ship->y+1 + ry,
+		     thrustcolor );                 
+    }
+
+  //Bottom Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x - dx, ship->y-1 - dy,
+		     ship->x + lx, ship->y-1 + ly,
+		     ship->x + rx, ship->y-1 + ry,
+		     thrustcolor );                 
+    }
+  //Right Bottom Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x+1 - dx, ship->y-1 - dy,
+		     ship->x+1 + lx, ship->y-1 + ly,
+		     ship->x+1 + rx, ship->y-1 + ry,
+		     thrustcolor );                 
+    }
+
+  //Left Top Boundary Thruster
+  if( ship->thrust )
+    {
+      draw_triangle( ship->x-1 - dx, ship->y+1 - dy,
+		     ship->x-1 + lx, ship->y+1 + ly,
+		     ship->x-1 + rx, ship->y+1 + ry,
 		     thrustcolor );                 
     }
 
