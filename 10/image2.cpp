@@ -81,11 +81,11 @@ int Image::save( const char* filename ) {
   /* Load the an image from the file filename, replacing the current
      image size and data. The file is in a format that was saved by
      save().  Returns 0 success, else a non-zero error code . */
-int load( const char* filename ) {
+int Image::load( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename,"r");
       if (f != NULL) {
-         Image* newimage= new Image();
+         pixels* newpixel= new pixel();
          fread(&(newimage->cols),sizeof(uint8_t*),1,f);
          fread(&(newimage->rows),sizeof(uint8_t*),1,f);
          unsigned len = (newimage->cols)*(newimage->rows);
