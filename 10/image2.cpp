@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include "image2.hpp"
-//  
+  
 Image::Image() {
    cols = 0;
    rows = 0;
@@ -54,7 +54,7 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
   /* Saves the image in the file filename. In a format that can be
      loaded by load().  Returns 0 on success, else a non-zero error
      code. */
-int save( const char* filename ) {
+int Image::save( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
@@ -63,7 +63,7 @@ int save( const char* filename ) {
          fwrite(rows,sizeof(uint8_t*),1,f);
          if (len > 0) {
             fwrite(pixels,sizeof(uint8_t*),len,f);
-            if (fwrite(ia->data,sizeof(uint8_t*),len,f) == len) {
+            if (fwrite(pixels,sizeof(uint8_t*),len,f) == len) {
                fclose(f);
                return 0;
             }
@@ -89,9 +89,9 @@ int load( const char* filename ) {
          fread(&(newimage->cols),sizeof(uint8_t*),1,f);
          fread(&(newimage->rows),sizeof(uint8_t*),1,f);
          unsigned len = (newimage->cols)*(newimage->rows);
-         if (newimage->resize(cols,rows,0) == 0) {
+         if (newimage->resize(newimage->cols,newimage->rows,0) == 0) {
             for (int i=0; i<len; i++) {
-               fread(pixels,sizeof(uint8_t*),ia->len,f);
+               fread(newimage->pixels,sizeof(uint8_t*),len,filename);
             }
             fclose(f);
             return 0;
