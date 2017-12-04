@@ -132,7 +132,17 @@ void ship_draw( const ship_t* ship )
 
   float rx = ship->size/2.0 * cos( fmod( ship->a - 2.2, 2.0*M_PI) );
   float ry = ship->size/2.0 * sin( fmod( ship->a - 2.2, 2.0*M_PI) );
-  
+
+//Ship Draw
+   for (int i=-1; i<1; i++) {
+      for (int j=-1; j<1; j++) {
+         draw_triangle( ship->x+i + dx, ship->y+j + dy,
+                        ship->x+i + lx, ship->y+j + ly,
+                        ship->x+i + rx, ship->y+j + ry,
+                        shipcolor );
+      }
+   }
+/* 
   //Actual Position Ship
   draw_triangle( ship->x + dx, ship->y + dy,
 		 ship->x + lx, ship->y + ly,
@@ -186,7 +196,19 @@ void ship_draw( const ship_t* ship )
 		     ship->x-1 + lx, ship->y+1 + ly,
 		     ship->x-1 + rx, ship->y+1 + ry,
 		     shipcolor );                 
+*/
 
+//Thruster Draw
+   for (int i=-1; i<1; i++) {
+      for (int j=-1; j<1; j++) {
+         draw_triangle( ship->x+i - dx, ship->y+j - dy,
+		        ship->x+i + lx, ship->y+j + ly,
+		        ship->x+i + rx, ship->y+j + ry,
+		        thrustcolor );  
+      }
+   }
+
+/*
   //Actual Position Thruster
   if( ship->thrust )
     {
@@ -266,6 +288,7 @@ void ship_draw( const ship_t* ship )
 		     ship->x-1 + rx, ship->y+1 + ry,
 		     thrustcolor );                 
     }
+*/ 
 
   /* TASK 3 */
   /* TODO: 
@@ -437,6 +460,7 @@ void roid_split( unsigned int index )
    its right side visible at the left side of the world. */
 void roid_draw( const roid_t* roid )
 {
+/*
   // draw a rectangle around centre of the roid.
   draw_rectangle( roid->x-roid->width/2.0, roid->y-roid->height/2.0, 
 		  roid->x+roid->width/2.0, roid->y+roid->height/2,
@@ -469,13 +493,22 @@ void roid_draw( const roid_t* roid )
   draw_rectangle( roid->x-(roid->width/2.0)-1, roid->y-(roid->height/2.0)-1, 
 		  roid->x+(roid->width/2.0)-1, roid->y+(roid->height/2)-1,
 		  roid->color );
+*/
+
+   for (int i=-1; i<1; i++) {
+      for (int j=-1; j<1; j++) {
+         draw_rectangle( roid->x+i-roid->width/2.0, roid->y+j-roid->height/2.0, 
+	                 roid->x+i+roid->width/2.0, roid->y+j+roid->height/2,
+	                 roid->color );      
+      }
+   }  
 
   /* TASK 4 */
   /* TODO: 
      more drawing so that the roids appear to wrap around the
      1x1 world correctly.
   */
-  }
+}
 
 /* Remove all roids that have lifetime of zero from the global array
    @roids. Update @numroids to reflect the new length of the array. */
