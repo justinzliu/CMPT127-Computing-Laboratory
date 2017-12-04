@@ -6,13 +6,6 @@
 #include <math.h>
 #include <iostream>
 #include "image2.hpp"
-
-class Image {
-  
-public:
-  unsigned int cols;
-  unsigned int rows;
-  uint8_t* pixels;
   
 Image::Image() {
    cols = 0;
