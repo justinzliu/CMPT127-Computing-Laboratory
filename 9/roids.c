@@ -142,61 +142,6 @@ void ship_draw( const ship_t* ship )
                         shipcolor );
       }
    }
-/* 
-  //Actual Position Ship
-  draw_triangle( ship->x + dx, ship->y + dy,
-		 ship->x + lx, ship->y + ly,
-		 ship->x + rx, ship->y + ry,
-		 shipcolor );
-  
-  //Right Boundary Ship
-      draw_triangle( ship->x+1 + dx, ship->y + dy,
-		     ship->x+1 + lx, ship->y + ly,
-		     ship->x+1 + rx, ship->y + ry,
-		     shipcolor );                 
-  
-  //Left Boundary Ship
-      draw_triangle( ship->x-1 + dx, ship->y + dy,
-		     ship->x-1 + lx, ship->y + ly,
-		     ship->x-1 + rx, ship->y + ry,
-		     shipcolor );                 
-
-  //Right Top Boundary Ship
-      draw_triangle( ship->x+1 + dx, ship->y+1 + dy,
-		     ship->x+1 + lx, ship->y+1 + ly,
-		     ship->x+1 + rx, ship->y+1 + ry,
-		     shipcolor );                 
-
-  //Left Bottom Boundary Ship
-      draw_triangle( ship->x-1 + dx, ship->y-1 + dy,
-		     ship->x-1 + lx, ship->y-1 + ly,
-		     ship->x-1 + rx, ship->y-1 + ry,
-		     shipcolor );                 
-
-  //Top Boundary Ship
-      draw_triangle( ship->x + dx, ship->y+1 + dy,
-		     ship->x + lx, ship->y+1 + ly,
-		     ship->x + rx, ship->y+1 + ry,
-		     shipcolor );                 
-
-  //Bottom Boundary Ship
-      draw_triangle( ship->x + dx, ship->y-1 + dy,
-		     ship->x + lx, ship->y-1 + ly,
-		     ship->x + rx, ship->y-1 + ry,
-		     shipcolor );    
-             
-  //Right Bottom Boundary Ship
-      draw_triangle( ship->x+1 + dx, ship->y-1 + dy,
-		     ship->x+1 + lx, ship->y-1 + ly,
-		     ship->x+1 + rx, ship->y-1 + ry,
-		     shipcolor );                 
-
-  //Left Top Boundary Ship
-      draw_triangle( ship->x-1 + dx, ship->y+1 + dy,
-		     ship->x-1 + lx, ship->y+1 + ly,
-		     ship->x-1 + rx, ship->y+1 + ry,
-		     shipcolor );                 
-*/
 
 //Thruster Draw
    if (ship->thrust) {
@@ -209,88 +154,6 @@ void ship_draw( const ship_t* ship )
          }
       }
    }
-
-/*
-  //Actual Position Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x - dx, ship->y - dy,
-		     ship->x + lx, ship->y + ly,
-		     ship->x + rx, ship->y + ry,
-		     thrustcolor );                 
-    }
-  
-  //Right Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x+1 - dx, ship->y - dy,
-		     ship->x+1 + lx, ship->y + ly,
-		     ship->x+1 + rx, ship->y + ry,
-		     thrustcolor );                 
-    }
-  
-  //Left Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x-1 - dx, ship->y - dy,
-		     ship->x-1 + lx, ship->y + ly,
-		     ship->x-1 + rx, ship->y + ry,
-		     thrustcolor );                 
-    }
-
-  //Right Top Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x+1 - dx, ship->y+1 - dy,
-		     ship->x+1 + lx, ship->y+1 + ly,
-		     ship->x+1 + rx, ship->y+1 + ry,
-		     thrustcolor );                 
-    }
-
-  //Left Bottom Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x-1 - dx, ship->y-1 - dy,
-		     ship->x-1 + lx, ship->y-1 + ly,
-		     ship->x-1 + rx, ship->y-1 + ry,
-		     thrustcolor );                 
-    }
-
-  //Top Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x - dx, ship->y+1 - dy,
-		     ship->x + lx, ship->y+1 + ly,
-		     ship->x + rx, ship->y+1 + ry,
-		     thrustcolor );                 
-    }
-
-  //Bottom Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x - dx, ship->y-1 - dy,
-		     ship->x + lx, ship->y-1 + ly,
-		     ship->x + rx, ship->y-1 + ry,
-		     thrustcolor );                 
-    }
-  //Right Bottom Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x+1 - dx, ship->y-1 - dy,
-		     ship->x+1 + lx, ship->y-1 + ly,
-		     ship->x+1 + rx, ship->y-1 + ry,
-		     thrustcolor );                 
-    }
-
-  //Left Top Boundary Thruster
-  if( ship->thrust )
-    {
-      draw_triangle( ship->x-1 - dx, ship->y+1 - dy,
-		     ship->x-1 + lx, ship->y+1 + ly,
-		     ship->x-1 + rx, ship->y+1 + ry,
-		     thrustcolor );                 
-    }
-*/ 
 
   /* TASK 3 */
   /* TODO: 
@@ -462,40 +325,6 @@ void roid_split( unsigned int index )
    its right side visible at the left side of the world. */
 void roid_draw( const roid_t* roid )
 {
-/*
-  // draw a rectangle around centre of the roid.
-  draw_rectangle( roid->x-roid->width/2.0, roid->y-roid->height/2.0, 
-		  roid->x+roid->width/2.0, roid->y+roid->height/2,
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0), 
-		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2),
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0)-1, roid->y-(roid->height/2.0), 
-		  roid->x+(roid->width/2.0)-1, roid->y+(roid->height/2),
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0), roid->y-(roid->height/2.0)+1, 
-		  roid->x+(roid->width/2.0), roid->y+(roid->height/2)+1,
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0), roid->y-(roid->height/2.0)-1, 
-		  roid->x+(roid->width/2.0), roid->y+(roid->height/2)-1,
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0)+1, 
-		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2)+1,
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0)+1, roid->y-(roid->height/2.0)-1, 
-		  roid->x+(roid->width/2.0)+1, roid->y+(roid->height/2)-1,
-		  roid->color );
-
-  draw_rectangle( roid->x-(roid->width/2.0)-1, roid->y-(roid->height/2.0)-1, 
-		  roid->x+(roid->width/2.0)-1, roid->y+(roid->height/2)-1,
-		  roid->color );
-*/
 
    for (int i=-1; i<=1; i++) {
       for (int j=-1; j<=1; j++) {
@@ -534,14 +363,7 @@ int shot_roid_hit( const shot_t* shot, const roid_t* roid )
 {
   /* TASK 5 */
   /* TODO: modify this code so it takes into account the toroidal
-     shape of the world.
-   
-  
-  return( shot->x >= roid->x - roid->width/2 &&
-	  shot->x <= roid->x + roid->width/2 &&
-	  shot->y >= roid->y - roid->height/2 &&
-	  shot->y <= roid->y + roid->height/2 );
-*/
+     shape of the world. */
 
 int hit = 0;
 for (int i=-1; i<=1; i++) {
