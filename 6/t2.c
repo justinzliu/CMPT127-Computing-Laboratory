@@ -68,7 +68,6 @@ intarr_t* intarr_load_json( const char* filename ) {
                len++;
             }
             fseek(f,0,SEEK_SET);
-            printf("len is: %d\n", len);
             ia->len = len;
             ia->data = malloc(sizeof(int)*ia->len);
             if (ia->data != NULL) {
