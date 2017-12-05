@@ -93,8 +93,7 @@ int Image::load( const char* filename ) {
                fclose(f);
                return 0;
                }
-            }   
-         }
+         }   
       fclose(f);
       }
    }
