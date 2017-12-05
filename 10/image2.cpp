@@ -23,7 +23,7 @@ Image::~Image() {
 
 int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
    if (pixels != NULL) {
-      delete [] pixels;
+      //delete [] pixels;
    }
    pixels = new uint8_t[width*height];
    if (pixels != NULL) {
