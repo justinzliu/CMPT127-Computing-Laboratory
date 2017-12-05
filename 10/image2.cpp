@@ -89,10 +89,9 @@ int Image::load( const char* filename ) {
          fread(&rows,sizeof(uint8_t*),1,f);
          unsigned int len = cols*rows;
          if (resize(cols,rows,0) == 0) {
-            for (int i=0; i<len; i++) {
-               if (fread(pixels,sizeof(uint8_t*),len,f) == len) {
-                  fclose(f);
-                  return 0;
+            if (fread(pixels,sizeof(uint8_t*),len,f) == len) {
+               fclose(f);
+               return 0;
                }
             }   
          }
