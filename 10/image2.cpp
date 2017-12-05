@@ -98,5 +98,6 @@ int Image::load( const char* filename ) {
       fclose(f);
       }
    }
+   //any errors or empty file
    return 1;
 }
