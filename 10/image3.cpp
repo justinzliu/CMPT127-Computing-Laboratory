@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
-#include "image3.hpp"
+#include "image3.hpp"z
   
   /* Constructs an image of 0x0 pixels. */
 Image::Image() {
@@ -91,17 +91,20 @@ int Image::save( const char* filename ) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
          unsigned int len = cols*rows;
+         int check = 0;
          if (len > 0) {
             fwrite(&cols,sizeof(uint8_t*),1,f);
             fwrite(&rows,sizeof(uint8_t*),1,f);
             for (unsigned int i=0; i<rows; i++) {
-               if (fwrite(pixels[i],sizeof(uint8_t*),cols,f) != cols) {
-                  return 1;
+               for (unsigned int j=0; j<cols; j++) {
+                  fwrite(&pixels[i][j],sizeof(uint8_t*),1,f);
+                  check++;
                }
             }
-            fclose(f);
-            return 0;
-         }
+            if (check == len) {
+               fclose(f);
+               return 0;
+            }
          else if (len == 0) {
             fclose(f);
             return 0;
@@ -122,13 +125,17 @@ int Image::load( const char* filename ) {
          fread(&cols,sizeof(uint8_t*),1,f);
          fread(&rows,sizeof(uint8_t*),1,f);
          if (resize(cols,rows,0) == 0) {
+         int check = 0;
             for (unsigned int i=0; i<rows; i++) {
-               if (fread(pixels[i],sizeof(uint8_t*),cols,f) != cols) {
-                  return 1; 
+               for (unsigned int j=0; j<cols; j++) {
+                  fread(&pixels[i][j],sizeof(uint8_t*),1,f);
+                  check++;
                }
             }
-            fclose(f);
-            return 0;
+            if (check == cols*rows) {
+               fclose(f);
+               return 0;
+            }
          }   
       fclose(f);
       }
