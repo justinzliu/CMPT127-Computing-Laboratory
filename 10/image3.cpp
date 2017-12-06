@@ -46,14 +46,14 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
    if (pixels != NULL) {
       for (int i=0; i<height; i++) {
          pixels[i] = new uint8_t[width];
-         if pixels[i] == NULL {
+         if (pixels[i] == NULL) {
             return 1;
          }
       }
       cols = width;
       rows = height;
-      for (int i=0; i<height; i++) {
-         for (int j=0; j<width; i++) {
+      for (unsigned int i=0; i<height; i++) {
+         for (unsigned int j=0; j<width; i++) {
             pixels[i][j] = fillcolor;
          }
       }
@@ -96,7 +96,7 @@ int Image::save( const char* filename ) {
          if (len > 0) {
             fwrite(&cols,sizeof(uint8_t*),1,f);
             fwrite(&rows,sizeof(uint8_t*),1,f);
-            for (int i=0; i<rows; i++) {
+            for (unsigned int i=0; i<rows; i++) {
                if (fwrite(pixels[i],sizeof(uint8_t*),cols,f) != cols) {
                   return 1;
                }
@@ -124,7 +124,7 @@ int Image::load( const char* filename ) {
          fread(&cols,sizeof(uint8_t*),1,f);
          fread(&rows,sizeof(uint8_t*),1,f);
          if (resize(cols,rows,0) == 0) {
-            for (int i=0; i<rows; i++) {
+            for (unsigned int i=0; i<rows; i++) {
                if (fread(pixels[i],sizeof(uint8_t*),cols,f) != cols) {
                   return 1; 
                }
