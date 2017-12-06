@@ -105,6 +105,7 @@ int Image::save( const char* filename ) {
                fclose(f);
                return 0;
             }
+         }
          else if (len == 0) {
             fclose(f);
             return 0;
