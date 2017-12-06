@@ -65,7 +65,7 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
      pixel, the call fails and the image does not change.*/
 int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
    if (pixels != NULL && x < cols && y < rows) {
-      pixels[x][y] = color;
+      pixels[y][x] = color;
       return 0;
    }
    return 1;
@@ -77,7 +77,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
      code. */
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
    if (pixels != NULL && colorp != NULL && x < cols && y < rows) {
-      *colorp = pixels[x][y];
+      *colorp = pixels[y][x];
       return 0;
    }
    return 1;
