@@ -125,22 +125,23 @@ int Image::load( const char* filename ) {
       if (f != NULL) {
          fread(&cols,sizeof(uint8_t*),1,f);
          fread(&rows,sizeof(uint8_t*),1,f);
-      if (pixels != NULL) {
-         for (unsigned int i=0; i<rows; i++) {
-            delete [] pixels[i];
-         }
-         delete [] pixels;
-         pixels = NULL;
-      }
-      pixels = new uint8_t*[rows];
-      if (pixels != NULL) {
-         for (unsigned int i=0; i<rows; i++) {
-            pixels[i] = new uint8_t[cols];
-            if (pixels[i] == NULL) {
-               return 1;
+      if (cols > 0 && rows > 0) {
+         if (pixels != NULL) {
+            for (unsigned int i=0; i<rows; i++) {
+               delete [] pixels[i];
             }
+            delete [] pixels;
+            pixels = NULL;
          }
-         int check = 0;
+         pixels = new uint8_t*[rows];
+         if (pixels != NULL) {
+            for (unsigned int i=0; i<rows; i++) {
+               pixels[i] = new uint8_t[cols];
+               if (pixels[i] == NULL) {
+                  return 1;
+               }
+            }
+            int check = 0;
             for (unsigned int i=0; i<rows; i++) {
                for (unsigned int j=0; j<cols; j++) {
                   fread(&pixels[i][j],sizeof(uint8_t*),1,f);
@@ -151,6 +152,7 @@ int Image::load( const char* filename ) {
                fclose(f);
                return 0;
             }
+         }
       }   
       fclose(f);
       }
