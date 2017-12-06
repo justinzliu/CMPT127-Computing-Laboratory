@@ -6,13 +6,6 @@
 #include <math.h>
 #include <iostream>
 #include "image3.hpp"
-
-class Image {
-  
-public:
-  unsigned int cols;
-  unsigned int rows;
-  uint8_t** pixels;
   
   /* Constructs an image of 0x0 pixels. */
 Image::Image() {
@@ -33,6 +26,7 @@ Image::~Image() {
       pixels = NULL;
    }
 }
+
   
   /* Changes the size of an image, allocating memory as necessary, and
      setting all pixels to fillcolor. Returns 0 on success, or a
@@ -138,7 +132,6 @@ Image::~Image() {
             }
             fclose(f);
             return 0;
-            }
          }   
       fclose(f);
       }
