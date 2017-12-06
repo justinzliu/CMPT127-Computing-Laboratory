@@ -31,7 +31,7 @@ Image::~Image() {
   /* Changes the size of an image, allocating memory as necessary, and
      setting all pixels to fillcolor. Returns 0 on success, or a
      non-zero error code.*/ 
-  int resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
+int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
    //I would imagine this would be a good line of code... but apparently I'm getting a double free call.
    /*
    if (pixels != NULL) {
@@ -65,7 +65,7 @@ Image::~Image() {
   /* Sets the color of the pixel at (x,y) to color. Returns 0 on
      success, else a non-zero error code. If (x,y) is not a valid
      pixel, the call fails and the image does not change.*/
-  int set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
+int Image::set_pixel( unsigned int x, unsigned int y, uint8_t color ) {
    if (pixels != NULL && x < cols && y < rows) {
       pixels[x][y] = color;
       return 0;
@@ -77,7 +77,7 @@ Image::~Image() {
   /* Gets the color of the pixel at (x,y) and stores at the address
      pointed to by colorp. Returns 0 on success, else a non-zero error
      code. */
-  int get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
+int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colorp ) {
    if (pixels != NULL && colorp != NULL && x < cols && y < rows) {
       *colorp = pixels[x][y];
       return 0;
@@ -88,7 +88,7 @@ Image::~Image() {
   /* Saves the image in the file filename. In a format that can be
      loaded by load().  Returns 0 on success, else a non-zero error
      code. */
-  int save( const char* filename ) {
+int Image::save( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename, "w");
       if (f != NULL) {
@@ -117,13 +117,12 @@ Image::~Image() {
   /* Load the an image from the file filename, replacing the current
      image size and data. The file is in a format that was saved by
      save().  Returns 0 success, else a non-zero error code . */
-  int load( const char* filename ) {
+int Image::load( const char* filename ) {
    if (filename != NULL) {
       FILE* f = fopen(filename,"r");
       if (f != NULL) {
          fread(&cols,sizeof(uint8_t*),1,f);
          fread(&rows,sizeof(uint8_t*),1,f);
-         unsigned int len = cols*rows;
          if (resize(cols,rows,0) == 0) {
             for (int i=0; i<rows; i++) {
                if (fread(pixels[i],sizeof(uint8_t*),cols,f) != cols) {
