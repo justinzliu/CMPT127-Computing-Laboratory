@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
-#include "image3.hpp"z
+#include "image3.hpp"
   
   /* Constructs an image of 0x0 pixels. */
 Image::Image() {
