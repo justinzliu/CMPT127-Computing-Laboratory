@@ -1,4 +1,11 @@
-#include <stdint.h> // for uint8_t
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h> 
+#include <assert.h>
+#include <stdio.h>
+#include <math.h>
+#include <iostream>
+#include "image3.hpp"
 
 class Image {
   
@@ -43,7 +50,7 @@ Image::~Image() {
    */
    pixels = new uint8_t[height];
    if (pixels != NULL) {
-      for (int i=0; i<width; i++) {
+      for (int i=0; i<height; i++) {
          pixels[i] = new uint8_t[width];
          if pixels[i] == NULL {
             return 1;
