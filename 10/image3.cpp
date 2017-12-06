@@ -33,15 +33,13 @@ Image::~Image() {
      non-zero error code.*/ 
 int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
    //I would imagine this would be a good line of code... but apparently I'm getting a double free call.
-   /*
    if (pixels != NULL) {
-      for (int i=0; i<height; i++) {
+      for (unsigned int i=0; i<rows; i++) {
          delete [] pixels[i];
       }
       delete [] pixels;
       pixels = NULL;
    }
-   */
    pixels = new uint8_t*[height];
    if (pixels != NULL) {
       for (unsigned int i=0; i<height; i++) {
@@ -53,7 +51,7 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
       cols = width;
       rows = height;
       for (unsigned int i=0; i<height; i++) {
-         for (unsigned int j=0; j<width; i++) {
+         for (unsigned int j=0; j<width; j++) {
             pixels[i][j] = fillcolor;
          }
       }
