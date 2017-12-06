@@ -19,7 +19,7 @@ Image::~Image() {
    cols = 0;
    rows = 0;
    if (pixels != NULL) {
-      for (int i=0; i<rows; i++) {
+      for (unsigned int i=0; i<rows; i++) {
          delete [] pixels[i];
       }
       delete [] pixels;
@@ -42,9 +42,9 @@ int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor )
       pixels = NULL;
    }
    */
-   pixels = new uint8_t[height];
+   pixels = new uint8_t*[height];
    if (pixels != NULL) {
-      for (int i=0; i<height; i++) {
+      for (unsigned int i=0; i<height; i++) {
          pixels[i] = new uint8_t[width];
          if (pixels[i] == NULL) {
             return 1;
