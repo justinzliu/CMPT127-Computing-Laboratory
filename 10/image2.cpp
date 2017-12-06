@@ -24,11 +24,12 @@ Image::~Image() {
 
 int Image::resize( unsigned int width,  unsigned int height, uint8_t fillcolor ) {
    //I would imagine this would be a good line of code... but apparently I'm getting a double free call.
+   /*
    if (pixels != NULL) {
       delete [] pixels;
       pixels = NULL;
    }
-  
+   */
    pixels = new uint8_t[width*height];
    if (pixels != NULL) {
       cols = width;
