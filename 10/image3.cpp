@@ -94,7 +94,9 @@ int Image::save( const char* filename ) {
          int check = 0;
          if (len > 0) {
             fwrite(&cols,sizeof(uint8_t*),1,f);
+            printf("cols is: %d\n", cols); 
             fwrite(&rows,sizeof(uint8_t*),1,f);
+            printf("rows is: %d\n", rows);
             for (unsigned int i=0; i<rows; i++) {
                for (unsigned int j=0; j<cols; j++) {
                   fwrite(&pixels[i][j],sizeof(uint8_t*),1,f);
@@ -124,8 +126,9 @@ int Image::load( const char* filename ) {
       FILE* f = fopen(filename,"r");
       if (f != NULL) {
          fread(&cols,sizeof(uint8_t*),1,f);
+         printf("cols is: %d\n", cols);
          fread(&rows,sizeof(uint8_t*),1,f);
-      if (cols > 0 && rows > 0) {
+         printf("rows is: %d\n", rows);
          if (pixels != NULL) {
             for (unsigned int i=0; i<rows; i++) {
                delete [] pixels[i];
@@ -152,8 +155,7 @@ int Image::load( const char* filename ) {
                fclose(f);
                return 0;
             }
-         }
-      }   
+         }  
       fclose(f);
       }
    }
