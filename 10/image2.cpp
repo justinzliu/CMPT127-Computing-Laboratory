@@ -67,7 +67,6 @@ int Image::save( const char* filename ) {
          if (len > 0) {
             fwrite(&cols,sizeof(uint8_t*),1,f);
             fwrite(&rows,sizeof(uint8_t*),1,f);
-            fwrite(pixels,sizeof(uint8_t*),len,f);
             if (fwrite(pixels,sizeof(uint8_t*),len,f) == len) {
                fclose(f);
                return 0;
