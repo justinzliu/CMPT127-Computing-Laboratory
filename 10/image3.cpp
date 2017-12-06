@@ -134,8 +134,8 @@ int Image::load( const char* filename ) {
       }
       pixels = new uint8_t*[rows];
       if (pixels != NULL) {
-         for (unsigned int i=0; i<height; i++) {
-            pixels[i] = new uint8_t[width];
+         for (unsigned int i=0; i<rows; i++) {
+            pixels[i] = new uint8_t[cols];
             if (pixels[i] == NULL) {
                return 1;
             }
